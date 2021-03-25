@@ -1,0 +1,43 @@
+<div class="main-content">
+
+  <!-- content -->
+  <div class="container-fluid content-top-gap">
+
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb my-breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{product.product}}</li>
+      </ol>
+    </nav>
+    <!-- //breadcrumbs -->
+
+    <!-- card heading -->
+    <div class="cards__heading">
+      <h3>Product Details</h3>
+    </div>
+    <div class="row">
+      <a href="/vendor/edit-product/{{product._id}}"class="btn btn-info ml-auto mb-2 mr-3">Edit</a>
+    </div>
+    <!-- //card heading -->
+
+    <!-- content block style 1-->
+    <div class="card card_border p-lg-5 p-3 mb-4">
+      <div class="card-body py-3 p-0">
+        <div class="row">
+          <div class="col-lg-6 align-self pr-lg-4">
+            <h3 class="block__title mb-lg-4">{{product.product}}</h3>
+            <h4 class="mb-3">Price: {{product.price}}</h4>
+            <h4 class="mb-lg-5 mb-3">Description: {{product.description}}</h4>
+            <a href="#read" class="btn btn-style btn-primary"> Read More</a>
+          </div>
+          <div class="col-lg-6 pl-lg-4 mt-lg-0 mt-4">
+            
+            <img src="/images/product-images/{{product._id}}__thumbnail.png" alt="" class="img-fluid rounded" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //content block style 1-->
+    </div>

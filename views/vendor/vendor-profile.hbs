@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="main-body">
+    
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+          </nav>
+          <!-- /Breadcrumb -->
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="/images/profile-images/profile-vendor.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <form action="/vendor/profile-photo" id="file-photo" method="POST" enctype="multipart/form-data">
+                  <label for="file">
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                    <input type="file" id="file" style="display: none" name="profile-vendor"
+                      accept="image/gif,image/jpeg,image/jpg,image/png" multiple="" data-original-title="upload photos">
+                  </label>
+                </form>
+                <script>document.getElementById("file").onchange = function() {
+    document.getElementById("file-photo").submit();
+};</script>
+              
+                      <h4>{{vendor.owner}}</h4>
+                      <p class="text-secondary mb-1">your address</p>
+                      <p class="text-muted font-size-sm"></p>
+                      
+                      <button class="btn btn-outline-primary">Edit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3">
+                
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Brand</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{vendor.brandName}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{vendor.email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    {{vendor.phone}}
+                    </div>
+                  </div>
+                  <hr>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{vendor.address}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row gutters-sm">
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Your</i>Orders</h6>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Your</i>Payment Status</h6>
+                      
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>

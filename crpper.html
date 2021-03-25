@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>Crop Image Before Upload using CropperJS with PHP</title>
+		<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+		<link href="/node_modules/cropperjs/dist/cropper.css" rel="stylesheet" type="text/css">
+		
+		<style>
+
+		img {
+  max-width: 100%; /* This rule is very important, please do not ignore this! */
+}
+ 
+#canvas {
+  height: 500px;
+  width: 500px;
+  background-color: #ffffff;
+  cursor: default;
+  border:red;
+}
+		
+		</style>
+	</head>
+	<body>
+		<p>
+			<input type="file" id="fileInput" accept="image/*" />
+			<input type="button" id="btnCrop" value="Crop" />
+			<input type="button" id="btnRestore" value="Restore" />
+		  </p>
+		  <div>
+			<canvas id="canvas">
+			  Your browser does not support the HTML5 canvas element.
+			</canvas>
+		  </div>           
+		   
+		  <div id="result"></div>
+	</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.js" integrity="sha512-XL8wKq9jUbb9LMyrezd19IPRrf41omJUvZpqTXlpGXREAFbmoulbt3yBv+Lw+L007NL5tL0HRfnlXeKtvlvITg==" crossorigin="anonymous"></script>
+<script>
+	var canvas  = $("#canvas"),
+    context = canvas.get(0).getContext("2d"),
+    $result = $('#result');
+
+$('#fileInput').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var img = new Image();
+           img.onload = function() {
+             context.canvas.height = img.height;
+             context.canvas.width  = img.width;
+             context.drawImage(img, 0, 0);
+             var cropper = canvas.cropper({
+               aspectRatio: 16 / 9
+             });
+             $('#btnCrop').click(function() {
+                // Get a string base 64 data url
+                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                $result.append( $('<img>').attr('src', croppedImageDataURL) );
+             });
+             $('#btnRestore').click(function() {
+               canvas.cropper('reset');
+               $result.empty();
+             });
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+});
+</script>

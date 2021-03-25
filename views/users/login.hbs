@@ -1,0 +1,68 @@
+   <div id="login">
+        <h3 class="text-center text-white pt-5" style="color: darkslategray;">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="/login" method="post" >
+                        {{#if locals.message}}
+                        <p>no user</p>
+                        {{/if}}
+                        
+                            <h3 class="text-center " style="color: darkslategray;">Login</h3>
+                            <div class="form-group">
+                                <label for="username" class=""style="color: darkslategray;">Phone:</label><br>
+                                <input type="text" name="phone" id="phonenum" onchange="checkPhone()" class="form-control">
+                            </div>
+                            <div id="otp-div" class="form-group" style="visibility:hidden">
+                                <label for="password" style="color: darkslategray;" class="">Otp:</label><br>
+                                <input type="text" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"></label><br>
+                                <input type="submit"  class="btn btn-dark btn-md" >
+                            </div>
+                            <div id="register-link" class="text-right mb-3">
+                                <a href="/signup"><span>Don't have account ? Signup.</span></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+       {{!-- <div id="login">
+        <h3 class="text-center text-white pt-5" style="color: darkslategray;">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="/login" method="post" >
+                        {{#if locals.message}}
+                        <p>no user</p>
+                        {{/if}}
+                        
+                            <h3 class="text-center " style="color: darkslategray;">Login</h3>
+                            <div class="form-group">
+                                <label for="username" class=""style="color: darkslategray;">Phone:</label><br>
+                                <input type="text" name="phone" id="phonenum" onchange="checkPhone()" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" style="color: darkslategray;" class="">Otp:</label><br>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"></label><br>
+                                <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit">
+                            </div>
+                            <div id="register-link" class="text-right mb-3">
+                                <a href="/signup"><span>Don't have account ? Signup.</span></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}

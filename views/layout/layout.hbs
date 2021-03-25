@@ -1,0 +1,451 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Panel Side</title>
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="/styles/style.css">
+
+  <!-- google fonts -->
+  <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="/styles/cropper.css"> 
+
+</head>
+
+<body class="sidebar-menu-collapsed">
+  <div class="se-pre-con"></div>
+{{#if vendor}}
+{{>vendor-header}}
+{{else}}
+{{>admin-header}}
+{{/if}}
+  <!-- //header-ends -->
+ {{{body}}}
+ 
+</section>
+  <!--footer section start-->
+<footer class="dashboard">
+  <p>&copy 2020 Collective. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank"
+      class="text-primary">W3layouts.</a></p>
+</footer>
+<!--footer section end-->
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" class="bg-primary" title="Go to top">
+  <span class="fa fa-angle-up"></span>
+</button>
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction()
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("movetop").style.display = "block";
+    } else {
+      document.getElementById("movetop").style.display = "none";
+    }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+<!-- /move top -->
+
+
+<script src="/scripts/jquery-3.3.1.min.js"></script>
+<script src="/scripts/jquery-1.10.2.min.js"></script>
+
+<!-- chart js -->
+<script src="/scripts/Chart.min.js"></script>
+<script src="/scripts/utils.js"></script>
+<!-- //chart js -->
+
+<!-- Different scripts of charts.  Ex.Barchart, Linechart -->
+<script src="/scripts//bar.js"></script>
+<script src="/scripts/linechart.js"></script>
+<!-- //Different scripts of charts.  Ex.Barchart, Linechart -->
+
+
+<script src="/scripts/jquery.nicescroll.js"></script>
+<script src="/scripts//scripts.js"></script>
+
+<!-- close script -->
+<script>
+  var closebtns = document.getElementsByClassName("close-grid");
+  var i;
+
+  for (i = 0; i < closebtns.length; i++) {
+    closebtns[i].addEventListener("click", function () {
+      this.parentElement.style.display = 'none';
+    });
+  }
+</script>
+<!-- //close script -->
+
+<!-- disable body scroll when navbar is in active -->
+<script>
+  $(function () {
+    $('.sidebar-menu-collapsed').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script>
+<!-- disable body scroll when navbar is in active -->
+
+ <!-- loading-gif Js -->
+ <script src="/scripts/modernizr.js"></script>
+ <script>
+     $(window).load(function () {
+         // Animate loader off screen
+         $(".se-pre-con").fadeOut("slow");;
+     });
+ </script>
+ <!--// loading-gif Js -->
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/scripts/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.js" integrity="sha512-XL8wKq9jUbb9LMyrezd19IPRrf41omJUvZpqTXlpGXREAFbmoulbt3yBv+Lw+L007NL5tL0HRfnlXeKtvlvITg==" crossorigin="anonymous"></script>
+  <script>
+     var imgg = new Image()
+     var imggside = new Image()
+     var imggrear = new Image()
+
+      imgg.src = document.getElementById('thumbnail').src
+      imggside.src = document.getElementById('side').src
+      imggrear.src = document.getElementById('rear').src
+      console.log(document.getElementById('side').src)
+      console.log(document.getElementById('rear').src)
+     var imgdata =   function getDataUrl(img) {
+   // Create canvas
+   const canvas = document.createElement('canvas');
+   const ctx = canvas.getContext('2d');
+   // Set width and height
+   canvas.width = img.width;
+   canvas.height = img.height;
+   // Draw the image
+   ctx.drawImage(img, 0, 0);
+   return canvas.toDataURL('image/png');
+}
+  document.getElementById('base64Image').value = imgdata(imgg)
+  document.getElementById('base64ImageSide').value = imgdata(imggside)
+  document.getElementById('base64ImageRear').value = imgdata(imggrear)
+
+
+  </script>
+ <script >
+  // console.log(document.getElementById('thumbnail').src)
+   // var j = document.getElementById('thumbnail').src
+   // console.log(document.getElementById('inputTb').value+"--------------------------------")
+    var canvas  = $("#canvas"),
+    context = canvas.get(0).getContext("2d"),
+    $result = $('#result');
+  
+     // var imgg =new Image()
+     // imgg.src = j
+       //console.log('going to image')
+      // console.log(imgg)
+     //var imgdata =   function getDataUrl(img) {
+   // Create canvas
+  // const canvas = document.createElement('canvas');
+  // const ctx = canvas.getContext('2d');
+   // Set width and height
+   //canvas.width = img.width;
+  // canvas.height = img.height;
+   // Draw the image
+  // ctx.drawImage(img, 0, 0);
+  // return canvas.toDataURL('image/png');
+//}
+
+$('#inputTb').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+         console.log(this.files[0])
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+          console.log(evt)
+           var img = new Image();
+           img.onload = function() {
+             context.canvas.height = img.height;
+             context.canvas.width  = img.width;
+             context.drawImage(img, 0, 0);
+             var cropper = canvas.cropper({
+             aspectRatio: 'free',
+             viewMode:1
+
+             });
+             $('#btnCrop').click(function() {
+                // Get a string base 64 data url
+
+                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                
+ 
+                document.getElementById('thumbnail').src = croppedImageDataURL
+   
+                document.getElementById('base64Image').value = croppedImageDataURL
+                 console.log("thumbnail")
+
+               // $result.append( $('<img>').attr('src', croppedImageDataURL) );
+             });
+             $('#btnRestore').click(function() {
+               canvas.cropper('reset');
+               $result.empty();
+               document.getElementById('thumbnail').src = ''
+                document.getElementById('base64Image').value = ''
+             });
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+});
+var canvasSide = $("#canvasSide"),
+    contextSide = canvasSide.get(0).getContext("2d"),
+    $result = $('#result');
+
+$('#inputSide').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var imgSide = new Image();
+           console.log(imgSide+"lllllllllllllllllllllllllllllllllll")
+           
+           imgSide.onload = function() {
+              console.log(imgSide.height+"lllllllllllllllllllllllllllllllllll")
+             contextSide.canvas.height = imgSide.height;
+             contextSide.canvas.width  = imgSide.width;
+             contextSide.drawImage(imgSide, 0, 0);
+             var cropper = canvasSide.cropper({
+               aspectRatio: 'free',
+               viewMode:1
+             }); console.log(imgSide+"lllllllllllllllllllllllllllllllllll")
+             $('#btnCropSide').click(function() {
+                // Get a string base 64 data url
+                console.log(document.getElementById('base64Image').value)
+                var croppedImageDataURL = canvasSide.cropper('getCroppedCanvas').toDataURL("image/png");
+                 console.log("side")
+                document.getElementById('side').src = croppedImageDataURL
+                document.getElementById('base64ImageSide').value = croppedImageDataURL
+   
+               // $result.append( $('<img>').attr('src', croppedImageDataURL) );
+             });
+             $('#btnRestoreSide').click(function() {
+               canvasSide.cropper('reset');
+               $result.empty();
+               document.getElementById('side').src = ''
+                document.getElementById('base64ImageSide').value = ''
+             });
+           };
+           imgSide.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+});
+var canvasRear = $("#canvasRear"),
+    contextRear = canvasRear.get(0).getContext("2d"),
+    $result = $('#result');
+
+$('#inputRear').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var imgRear = new Image();
+           
+           
+           imgRear.onload = function() {
+              console.log(imgRear.height+"lllllllllllllllllllllllllllllllllll")
+             contextRear.canvas.height = imgRear.height;
+             contextRear.canvas.width  = imgRear.width;
+             contextRear.drawImage(imgRear, 0, 0);
+             var cropper = canvasRear.cropper({
+               aspectRatio: 'free',
+               viewMode:1
+             }); 
+             $('#btnCropRear').click(function() {
+                // Get a string base 64 data url
+                var croppedImageDataURL = canvasRear.cropper('getCroppedCanvas').toDataURL("image/png");
+                 console.log("Rear")
+                document.getElementById('rear').src = croppedImageDataURL
+                document.getElementById('base64ImageRear').value = croppedImageDataURL
+   
+               // $result.append( $('<img>').attr('src', croppedImageDataURL) );
+             });
+             $('#btnRestoreRear').click(function() {
+               canvasRear.cropper('reset');
+               $result.empty();
+               document.getElementById('Rear').src = ''
+                document.getElementById('base64ImageRear').value = ''
+             });
+           };
+           imgRear.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+});
+     
+
+</script>
+ <script>
+   var productExist = false
+   $(document).ready( function () {
+    $('#product-table').DataTable();
+} );
+function changeQuantity(productId, num) {
+  console.log(productId,num)
+}
+
+function checkProduct() {
+  
+  var productName = document.getElementById('inputProductName').value
+  console.log(productName)
+ $.ajax({
+   url:"/vendor/check-product",
+   data:{product:productName},
+   method:'POST',
+   success:(response) => {
+     if(response) {
+       document.getElementById('productErr').innerHTML = "Product name Already Declared"
+        productExist = true
+     }
+     else {
+       document.getElementById('productErr').innerHTML = ""
+       productExist = false
+       
+
+     }
+   }
+ })
+}
+         $("#add-vendor").validate({
+      rules: {
+
+        email: {
+          required: true,
+          email:true,
+        },
+        owner: {
+        required:true,
+       
+        },
+        brandName: {
+          required:true,
+          
+        },
+        address:{
+          required:true
+        },
+        phone:{
+          required:true,
+          number:true,
+          minlength:10
+        }
+        
+  
+
+      },
+
+  submitHandler:(form, e)=>{
+       console.log("add vendor")
+              e.preventDefault();
+                      $.ajax({
+              url:"/admin/add-vendor",
+              data:$('form').serialize(),
+              method:"POST",
+              success:function (response){
+                if(response){
+                  
+                window.location.href='/admin'
+              }
+              },
+              error:function (err){
+                  console.log(err)
+                  alert("Something Error :")
+  
+              }
+          })        
+        
+  }
+
+
+    });
+      $("#add-product").validate({
+      rules: {
+
+        product: {
+          required: true,
+          
+        },
+        price: {
+        required:true,
+        number:true,
+        minlength:1
+       
+        },
+        description: {
+          required:true,
+          minlength:6,
+
+          
+        },
+       image:{
+          required:true
+        },
+      },
+      submitHandler:(form, e) => {
+        console.log(productExist)
+        e.preventDefault()
+              if(productExist) {
+                alert("please change product name")
+              }
+              else {
+                form.submit();
+                }
+      }
+     
+
+    });
+
+    </script>
+
+</body>
+
+</html>
+  

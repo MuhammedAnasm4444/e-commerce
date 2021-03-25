@@ -1,0 +1,51 @@
+<div class="main-content">
+
+    <!-- content -->
+    <div class="container-fluid content-top-gap">
+
+
+        <!-- breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Forms</li>
+            </ol> 
+            <div class="row">
+                <a href="/vendor/add-product" class=" ml-auto btn btn-info">Add products</a>
+
+            </div>
+            
+        </nav>
+        <!-- //breadcrumbs -->
+        <!-- forms -->
+<section class="forms">
+<!-- forms 2 -->
+          <table id="product-table" class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Category</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each products}}
+    <tr>
+        
+      <th scope="row">{{incremented @index}}</th>
+     <td>{{this.product}}</td>
+      <td>{{this.price}}</td>
+      <td>Electronics/Mobile</td>
+      <td><a href="/vendor/view-product/{{this._id}}" class="btn btn-info">View</a> 
+      <a href="/vendor/delete-product/{{this._id}}" onclick="return alert('Are you sure')" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {{/each}}
+  
+  </tbody>
+</table>
+            <!-- //forms 2 -->
+            </section>
+            </div>
+            </div>

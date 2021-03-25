@@ -1,0 +1,134 @@
+<div class="main-content">
+
+    <!-- content -->
+    <div class="container-fluid content-top-gap">
+
+
+        <!-- breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Forms</li>
+            </ol>
+        </nav>
+        <!-- //breadcrumbs -->
+        <!-- forms -->
+        <section class="forms">
+            <!-- forms 3 -->
+            <div class="card card_border py-2 mb-4">
+                <div class="cards__heading">
+                    <h3>Add Products<span></span></h3>
+                </div>
+                <div class="card-body">
+                    <form action="/vendor/add-product" id="add-product" method="POST" >
+                        <nav aria-label="breadcrumb" class="mb-4 row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label input__label">Category</label>
+                            <ol class="breadcrumb my-breadcrumb mt-2 ml-3">
+                                <li class="breadcrumb-item"><a href="index.html">Electronics</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Mobiles</li>
+                            </ol>
+                        </nav>
+                        <div class="form-group row">
+                            <label id="inputProductName-error" class="error" for="inputProductName"></label>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label input__label">Product Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="product" class="form-control input-style" id="inputProductName"
+                                    placeholder="product name" onchange="checkProduct()">
+                            </div>
+                            <p class="text-danger" style="margin-left: 13em;" id="productErr"></p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label input__label">Product
+                                Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="price" class="form-control input-style" id="inputPassword3"
+                                    placeholder="price">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label input__label">Description</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="description" style="height: 100px;"
+                                    aria-label="With textarea"></textarea>
+
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-2 pt-0 input__label">Images</legend>
+                                <div class="">
+                                    <div class=""
+                                        style="height: 100px;  width: 100px;">
+                                        <img id="thumbnail" height="100" width="100" >
+                                    </div>
+                                    <input type="file" name="thumbnail" alt="" id="inputTb" accept="image/*">
+                                    <input type="text" name="base64" id="base64Image">
+                                    <input type="button" id="btnCrop" value="Crop" />
+                                    <input type="button" id="btnRestore" value="Restore" />
+                                    <div>
+                                        <canvas id="canvas" style="width:10px;height:200px;">
+                                         Your browser does not support the HTML5 canvas element.
+                                        </canvas>
+                                    </div>
+
+                                    <div id="result"></div>
+                                </div>
+                                <div class="" style="margin-left:11em;">
+
+                                    <div class=""
+                                        style="height: 150px;  width: 150px;">
+                                        <img id="side" height="150" width="150" >
+                                    </div>
+                                    <input type="file" name="side" alt="" id="inputSide">
+
+                                    <input type="text" name="base64side" id="base64ImageSide">
+                                    <input type="button" id="btnCropSide" value="Crop" />
+                                    <input type="button" id="btnRestoreSide" value="Restore" />
+                                    <div>
+                                        <canvas id="canvasSide" style="width:100px;height:200px;">
+                                            Your browser does not support the HTML5 canvas element.
+                                        </canvas>
+                                    </div>
+                                </div>
+                                <div class="" style="margin-left:11em;">
+
+                                    <div class=""
+                                        style="height: 150px;  width: 150px;">
+                                        <img id="rear" height="150" width="150" alt="">
+                                    </div>
+                                    <input type="file" name="rear" alt="" id="inputRear">
+                                    <input type="text" name="base64rear" id="base64ImageRear">
+                                    <input type="button" id="btnCropRear" value="Crop" />
+                                    <input type="button" id="btnRestoreRear" value="Restore" />
+                                    <div>
+                                        <canvas id="canvasRear" style="width:100px;height:200px;">
+                                            Your browser does not support the HTML5 canvas element.
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <input type="text" value="electronics/mobiles" name="category" id="" hidden>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary btn-style">ADD</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- //forms 3 -->
+            <!-- //horizontal forms-->
+        </section>
+    </div>
+</div>

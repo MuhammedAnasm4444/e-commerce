@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <style>
+       #cover {
+    background: #222 center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#cover-caption {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+   </style>
+    <title>Admin Panel</title>
+  </head>
+  <body>
+   <section id="cover" class="min-vh-100">
+    <div id="cover-caption">
+        <div class="container">
+            <div class="row text-white">
+                
+                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                    <h1 class="display-4 py-2 text-truncate">Admin Login.</h1>
+                    <div class="px-2">
+                        <form action="" id="admin-login" class="justify-content-center">
+                        <p class="text-danger"id="loginErr"></p>
+                            <div class="form-group">
+                                <label class="sr-only">Email</label>
+                                <input type="email" name='email'class="form-control" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <p class="text-danger"id="passwordErr"></p>
+                                <label class="sr-only">Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+
+    <script>
+         $("#admin-login").validate({
+      rules: {
+
+        email: {
+          required: true,
+          email:true,
+        },
+        password: {
+          required: true,
+          
+        },
+  
+
+      },
+
+  submitHandler:(form, e)=>{
+       console.log("hellllllllllllllllllll")
+       document.getElementById('passwordErr').innerHTML = "";
+       document.getElementById('loginErr').innerHTML = "";
+              e.preventDefault();
+              $.ajax({
+              url:"/admin/login",
+              data:$('form').serialize(),
+              method:"POST",
+              success:function (response){
+                if(response.passwordErr){
+                  console.log(response.password)
+                
+                   document.getElementById('passwordErr').innerHTML = "Invalid password"
+               
+                   }
+                   else if (response.loginErr) {
+                         document.getElementById('loginErr').innerHTML = "Invalid user"
+                   }
+                else { 
+                  console.log("admin logged")
+                  window.location.href="/admin"
+                
+                  
+                  }
+                
+                 
+                 
+              },
+              error:function (err){
+                  console.log(err)
+                  alert("Something Error :")
+  
+              }
+          })
+  }
+
+
+    });
+    </script>
+  </body>
+</html>

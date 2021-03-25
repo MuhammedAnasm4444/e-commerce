@@ -1,0 +1,45 @@
+<div class="main-content">
+
+    <!-- content -->
+    <div class="container-fluid content-top-gap">
+
+
+        <!-- breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Forms</li>
+            </ol>
+        </nav>
+        <!-- //breadcrumbs -->
+        <!-- forms -->
+<section class="forms">
+<!-- forms 2 -->
+          <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">price</th>
+      <th scope="col">description</th>
+      <th scope="col">vendor</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each products}}
+    <tr>
+      <th scope="row">{{incremented @index}}</th>
+      <td>{{this.product}}</td>
+      <td>{{this.price}}</td>
+      <td>{{this.description}}</td>
+       <td>{{this.vendorName}}</td>
+      <td><a href="/admin/vendor/{{this._id}}"><i class="fa fa-arrow-right"></a></i></td>
+    </tr>
+   {{/each}}
+  </tbody>
+</table>
+            <!-- //forms 2 -->
+            </section>
+            </div>
+            </div>

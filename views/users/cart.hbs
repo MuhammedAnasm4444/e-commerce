@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="main-body">
+    
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/profile">User</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="/cart">Cart</a></li>
+            </ol>
+          </nav>
+          <!-- /Breadcrumb -->
+    
+          <div class="row gutters-sm">
+             <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Your</i>Cart</h6>
+            <div class="col-md-12">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <h6 class="col-3">Image</h6>
+                    <h6 class="col-3">Product</h6>
+                    <h6 class="col-2">Price</h6>
+                    <h6 class="col-2">Quantity</h6>
+                    <h6 class="col-2">Total</h6>
+                  
+                  </div>
+                 
+                      {{#each cartItems}}
+                <div class="card-body" style="border-style: outset;border-color: azure;">
+                  <div class="row">
+                    <div class="col-3">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2"></i></h6>
+                      <img src="/images/product-images/{{this.product}}__thumbnail.png" height="50" width="50">
+                      </div>
+                      <div class=" col-3">
+                        <h6 class="mt-5">{{this.productDetails.product}}</h6>
+                      </div>
+                        <div class=" col-2">
+                        <h6 class="mt-5">{{this.productDetails.price}}</h6>
+                      </div>
+                      <div class="col-2">
+                        <h6 class="mt-5"><a onclick="changeQuantity('{{this.product}}','{{this.productDetails.price}}','-1')"><i class="fa fa-minus-square" aria-hidden="true"></i></a><span id="{{this.product}}">{{this.quantity}}</span><a onclick="changeQuantity('{{this.product}}','{{this.productDetails.price}}','1')"><i class="fa fa-plus-square" aria-hidden="true"></i></a> </h6>
+                      </div>
+                       <div class="col-2">
+                        <h6 class="mt-5">₹{{multiply this.productDetails.price this.quantity}} <a onclick="removeProduct('{{this.product}}')"><i class="fa fa-trash" aria-hidden="true"></i></a></h6>
+                      </div>
+                      </div>
+                    </div>
+                    {{/each}}
+                  
+                  <hr>
+                  <div class="row">
+                    <div class="ml-auto" style="border-style: outset;border-color: black;">
+                           <p id="" class="col-12">Total Price:<span id="total-price">{{totalPrice}}</span></p>
+                           
+                           <a class="btn btn-success ml-5 mb-2" href="/checkout">Checkout</a>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                   
+                  </div>
+                  <hr>
+                  <hr>
+                  <div class="row">
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row gutters-sm">
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>

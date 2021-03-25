@@ -1,0 +1,49 @@
+<div class="main-content">
+
+    <!-- content -->
+    <div class="container-fluid content-top-gap">
+
+
+        <!-- breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Forms</li>
+            </ol>
+        </nav>
+        <!-- //breadcrumbs -->
+        <!-- forms -->
+<section class="forms">
+<!-- forms 2 -->
+          <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each users}}
+    <tr>
+      <th scope="row">{{incremented @index}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.phone}}</td>
+     
+       {{#ifEquals this.status 'blocked'}}
+      <td><a class="btn btn-outline-info" href="/admin/block-user/?id={{this._id}}&status=unblocked">Unblock</a></td>
+      {{else}}
+      <td><a class="btn btn-outline-danger" href="/admin/block-user/?id={{this._id}}&status=blocked">Block</a></td>
+      {{/ifEquals}}
+    </tr>
+   {{/each}}
+  </tbody>
+</table>
+            <!-- //forms 2 -->
+            </section>
+            </div>
+            </div>

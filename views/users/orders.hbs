@@ -1,0 +1,24 @@
+<div class="container">
+    {{#each orders}}
+    <div class="card mb-2" >
+  <div class="card-header">
+    Order:{{incremented @index}} 
+    
+  </div>
+  <div class="ml-auto">
+Total Price: $<span style="font-weight: bolder;">{{this.totalPrice}}</span>
+    </div>
+  {{#each product}}
+  <div class="card-body">
+    
+    <h5 class="card-title">{{this.productDetails.product}}</h5>
+    <div>
+        <img src="/images/product-images/{{this.product}}__thumbnail.png" height="70" width="70">
+    </div>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <hr>
+  </div>
+  {{/each}}
+</div>
+{{/each}}
+</div>
