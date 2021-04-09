@@ -1,188 +1,358 @@
+ 
 <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
-		<div class="container-fluid">
-			<div class="inner-sec-shop px-lg-4 px-3">
-				<h3 class="tittle-w3layouts my-lg-4 my-4">New Arrivals for You </h3>
-				<div class="row">
-                    {{#each products}}
-					<!-- /womens -->
-					<div class="col-md-3 product-men women_two">
-						<div class="product-googles-info googles">
-							<div class="men-pro-item">
-								<div class="men-thumb-item">
-									<img src="/images/product-images/{{this._id}}__thumbnail.png" class="img-fluid" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="/view-product/{{this._id}}" class="link-product-add-cart">Quick View</a>
-			    							</div>
+	<div class="container-fluid">
+		<div class="inner-sec-shop px-lg-4 px-3">
+			<h3 class="tittle-w3layouts my-lg-4 my-4">New Arrivals for You </h3>
+			<div class="row" id="products" class="productClass">
+				{{#each products}}
+				<!-- /womens -->
+				<div class="col-md-3 product-men women_two mt-2">
+					<div class="product-googles-info googles">
+						<div class="men-pro-item">
+							<div class="men-thumb-item">
+								<img src="/images/product-images/{{this._id}}__thumbnail.png" height="500" width="500"
+									class="img-fluid" alt="">
+
+								<div class="men-cart-pro">
+									<div class="inner-men-cart-pro">
+
 									</div>
-									
 								</div>
-								<div class="item-info-product">
-									<div class="info-product-price">
-										<div class="grid_meta">
-											<div class="product_price">
-												<h4>
-													<a href="/view-product/{{this._id}}">{{this.product}}</a>
-												</h4>
-												<div class="grid-price mt-2">
-													<span class="money ">₹{{this.price}}</span>
-												</div>
+
+							</div>
+							<div class="item-info-product">
+								<div class="info-product-price">
+									<div class="grid_meta">
+										<div class="product_price">
+											<h4>
+												<a href="/view-product/{{this._id}}">{{this.product}}</a>
+											</h4>
+											<div class="grid-price mt-2">
+
+												<span class="money ">₹{{this.price}}</span>
 											</div>
-											<ul class="stars">
-												<li>
-													<a href="#">
-														<i class="fa fa-star" aria-hidden="true"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-star" aria-hidden="true"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-star" aria-hidden="true"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-star" aria-hidden="true"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-star-half-o" aria-hidden="true"></i>
-													</a>
-												</li>
-											</ul>
 										</div>
-										<div class="googles single-item hvr-outline-out">
-											{{!-- <form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart">
-												<input type="hidden" name="add" value="1">
-												<input type="hidden" name="googles_item" value="{{this.product}}">
-												<input type="hidden" name="amount" value="{{this.price}}">
-												<button type="submit" class="googles-cart pgoogles-cart">
-													<i class="fas fa-cart-plus"></i>
-												 <a id="add-to-cart" href="/add-to-cart"><i class="fas fa-cart-plus"></i></a> 	</button> --}} 
-												{{#if this.cart}}
-												{{else}}
-                                              <a id="cart-Button{{this._id}}" onclick="addToCart(event,'{{this._id}}')" href="/add-to-cart"><i class="fas fa-cart-plus"></i></a>
-												{{/if}}
-											</form>
-
-										</div>
+										<ul class="stars">
+											<li>
+												<a href="#">
+													<i class="fa fa-star" aria-hidden="true"></i>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-star" aria-hidden="true"></i>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-star" aria-hidden="true"></i>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-star" aria-hidden="true"></i>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-star-half-o" aria-hidden="true"></i>
+												</a>
+											</li>
+										</ul>
 									</div>
-									<div class="clearfix"></div>
+									<div class="googles single-item hvr-outline-out">
+										{{!-- <form action="#" method="post">
+											<input type="hidden" name="cmd" value="_cart">
+											<input type="hidden" name="add" value="1">
+											<input type="hidden" name="googles_item" value="{{this.product}}">
+											<input type="hidden" name="amount" value="{{this.price}}">
+											<button type="submit" class="googles-cart pgoogles-cart">
+												<i class="fas fa-cart-plus"></i>
+												<a id="add-to-cart" href="/add-to-cart"><i
+														class="fas fa-cart-plus"></i></a> </button> --}}
+											{{#if this.cart}}
+											{{else}}
+											<a id="cart-Button{{this._id}}" onclick="addToCart(event,'{{this._id}}')"
+												href="/add-to-cart"><i class="fas fa-cart-plus"></i></a>
+											{{/if}}
+										</form>
+
+									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-					{{/each}}
-					
-				</div>
-				<!-- //womens -->
-				<!-- /mens -->
-				
-					
-				
-					<!-- /mens -->
-							<!--//row-->
-				<!--/slide-->
-				
-				<!-- /testimonials -->
-				<div class="testimonials py-lg-4 py-3 mt-4">
-					
-				</div>
-				<!-- //testimonials -->
-				<div class="row galsses-grids pt-lg-5 pt-3">
-					
-				</div>
-				<!-- /grids -->
-				<div class="bottom-sub-grid-content py-lg-5 py-3">
-					<div class="row">
-						<div class="col-lg-4 bottom-sub-grid text-center">
-							<div class="bt-icon">
-
-								<span class="far fa-hand-paper"></span>
-							</div>
-
-							<h4 class="sub-tittle-w3layouts my-lg-4 my-3">Satisfaction Guaranteed</h4>
-							<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-							<p>
-								<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
-							</p>
-						</div>
-						<!-- /.col-lg-4 -->
-						<div class="col-lg-4 bottom-sub-grid text-center">
-							<div class="bt-icon">
-								<span class="fas fa-rocket"></span>
-							</div>
-
-							<h4 class="sub-tittle-w3layouts my-lg-4 my-3">Fast Shipping</h4>
-							<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-							<p>
-								<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
-							</p>
-						</div>
-						<!-- /.col-lg-4 -->
-						<div class="col-lg-4 bottom-sub-grid text-center">
-							<div class="bt-icon">
-								<span class="far fa-sun"></span>
-							</div>
-
-							<h4 class="sub-tittle-w3layouts my-lg-4 my-3">UV Protection</h4>
-							<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-							<p>
-								<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
-							</p>
-						</div>
-						<!-- /.col-lg-4 -->
-					</div>
-				</div>
-				<!-- //grids -->
-				<!-- /clients-sec -->
-				<div class="testimonials p-lg-5 p-3 mt-4">
-					<div class="row last-section">
-						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
-							<div class="mail-grid-icon text-center">
-								<i class="fas fa-gift"></i>
-							</div>
-							<div class="mail-grid-text-info">
-								<h3>Genuine Product</h3>
-								<p>MyCart approved Vendors</p>
-							</div>
-						</div>
-						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
-							<div class="mail-grid-icon text-center">
-								<i class="fas fa-shield-alt"></i>
-							</div>
-							<div class="mail-grid-text-info">
-								<h3>Secure Products</h3>
-								<p>High class packaging and shipping</p>
-							</div>
-						</div>
-						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
-							<div class="mail-grid-icon text-center">
-								<i class="fas fa-dollar-sign"></i>
-							</div>
-							<div class="mail-grid-text-info">
-								<h3>Cash on Delivery</h3>
-								<p>Free cash on Delivery on every products</p>
-							</div>
-						</div>
-						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
-							<div class="mail-grid-icon text-center">
-								<i class="fas fa-truck"></i>
-							</div>
-							<div class="mail-grid-text-info">
-								<h3>Easy Delivery</h3>
-								<p>Track and query about your product</p>
+								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- //clients-sec -->
+				{{/each}}
+
 			</div>
+			<div class="row mt-5">
+				<div class="mx-auto">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							{{#ifEquals previous '0'}}
+							{{else}}
+							<li class="page-item"><a class="page-link" href="/?page={{previous}}&limit=4" >Previous</a></li>
+							{{/ifEquals}}
+							{{#times totalPages}}
+							<li class="page-item"><a class="page-link" href="/l?page={{this}}&limit=4">{{this}}</a></li>
+							{{/times}}
+							{{#ifEquals next '0'}}
+							{{else}}
+							<li class="page-item"><a class="page-link"  href="/l?page={{next}}&limit=4">Next</a></li>
+							{{/ifEquals}}
+						</ul>
+					</nav>
+				</div>
+			</div>
+			
+			<!-- //womens -->
+			<!-- /mens -->
+
+
+
+			<!-- /mens -->
+			<!--//row-->
+			<!--/slide-->
+
+			<!-- /testimonials -->
+			<div class="testimonials py-lg-4 py-3 mt-4">
+
+			</div>
+			<!-- //testimonials -->
+			<div class="row galsses-grids pt-lg-5 pt-3">
+
+			</div>
+			<!-- /grids -->
+			<div class="bottom-sub-grid-content py-lg-5 py-3">
+				<div class="row">
+					<div class="col-lg-4 bottom-sub-grid text-center">
+						<div class="bt-icon">
+
+							<span class="far fa-hand-paper"></span>
+						</div>
+
+						<h4 class="sub-tittle-w3layouts my-lg-4 my-3">Satisfaction Guaranteed</h4>
+						<p>Premium and High quality products with affordable rates.</p>
+						
+					</div>
+					<!-- /.col-lg-4 -->
+					<div class="col-lg-4 bottom-sub-grid text-center mt-3">
+						<div class="bt-icon">
+							<span class="fas fa-rocket"></span>
+						</div>
+
+						<h4 class="sub-tittle-w3layouts my-lg-4 my-3">Fast Shipping</h4>
+						<p>Fast and reliable shipping services all over the world with minimum rates</p>
+						
+					</div>
+					<!-- /.col-lg-4 -->
+					<div class="col-lg-4 bottom-sub-grid text-centert mt-3">
+						<div class="bt-icon">
+							<span class="far fa-sun"></span>
+						</div>
+
+						<h4 class="sub-tittle-w3layouts my-lg-4 my-3">Elegant Services</h4>
+						<p>Free services for our premium clients and for first three orders for everyone.</p>
+						
+					</div>
+					<!-- /.col-lg-4 -->
+				</div>
+			</div>
+			<!-- //grids -->
+			<!-- /clients-sec -->
+			<div class="testimonials p-lg-5 p-3 mt-4">
+				<div class="row last-section">
+					<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+						<div class="mail-grid-icon text-center">
+							<i class="fas fa-gift"></i>
+						</div>
+						<div class="mail-grid-text-info">
+							<h3>Genuine Product</h3>
+							<p>MyCart approved Vendors</p>
+						</div>
+					</div>
+					<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+						<div class="mail-grid-icon text-center">
+							<i class="fas fa-shield-alt"></i>
+						</div>
+						<div class="mail-grid-text-info">
+							<h3>Secure Products</h3>
+							<p>High class packaging and shipping</p>
+						</div>
+					</div>
+					<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+						<div class="mail-grid-icon text-center">
+							<i class="fas fa-dollar-sign"></i>
+						</div>
+						<div class="mail-grid-text-info">
+							<h3>Cash on Delivery</h3>
+							<p>Free cash on Delivery on every products</p>
+						</div>
+					</div>
+					<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+						<div class="mail-grid-icon text-center">
+							<i class="fas fa-truck"></i>
+						</div>
+						<div class="mail-grid-text-info">
+							<h3>Easy Delivery</h3>
+							<p>Track and query about your product</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //clients-sec -->
 		</div>
-	</section>
+	</div>
+</section>
+	<script src="/scripts/scripts/jquery-2.2.3.min.js"></script>
+	<script>
+		let searchBox = document.querySelector(".searchBox");
+		let filterSearch, ulItem, liItem, links;
+		function processResults() {
+			input = document.getElementById("searchProducts");
+			filterSearch = searchBox.value.toUpperCase();
+			ulItem = document.querySelector("#products");
+			liItem = ulItem.getElementsByClassName("product-men");
+
+
+			Array.from(liItem).forEach(element => {
+				links = element.getElementsByTagName("a")[0];
+
+				console.log(links.innerHTML)
+				if (links.innerHTML.toUpperCase().indexOf(filterSearch) > -1) {
+					element.style.display = "";
+				} else {
+					element.style.display = "none";
+				}
+			});
+		}
+		searchBox.addEventListener("keyup", () => {
+			processResults();
+		});
+
+	</script>
+	<!-- newsletter modal -->
+
+	<!-- Modal -->
+
+
+	<!-- Modal -->
+
+	<script>
+		$(document).ready(function () {
+			$("#myModal").modal();
+		});
+	</script>
+	<!-- // modal -->
+
+	<!--search jQuery-->
+	<script src="/scripts/scripts/modernizr-2.6.2.min.js"></script>
+	<script src="/scripts/scripts/classie-search.js"></script>
+	<script src="/scripts/scripts/demo1-search.js"></script>
+	<!--//search jQuery-->
+	<!-- cart-js -->
+	<script src="/scripts/scripts/minicart.js"></script>
+	
+
+	<!-- //cart-js -->
+
+	<!-- carousel -->
+	<!-- Count-down -->
+	{{!--
+	<script src="/scripts/scripts/simplyCountdown.js"></script> --}}
+
+	
+	<script src="/scripts/scripts/jquery-ui.js"></script>
+
+	
+	<!--// Count-down -->
+	
+	<!-- //end-smooth-scrolling -->
+	
+	<!-- //FlexSlider-->
+
+
+	<!-- dropdown nav -->
+
+	<!-- //dropdown nav -->
+	<script src="/scripts/scripts/move-top.js"></script>
+	<script src="/scripts/scripts/easing.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 900);
+			});
+		});
+	</script>
+	<script>
+		 	function addToCart(e, id) {
+			e.preventDefault();
+			console.log("hellll")
+			console.log(id)
+
+			$.ajax({
+				url: '/add-to-cart',
+				method: "post",
+				data: { productId: id },
+				success: (response) => {
+					if (!response.user) {
+						window.location.href = '/login'
+					}
+
+					else {
+						var num = document.getElementById('cartCount').innerHTML
+						document.getElementById('cartCount').innerHTML = parseInt(num) + 1
+						document.getElementById('cart-Button' + id).innerHTML = ""
+						document.getElementById('cart-Button' + id).style.visibility = 'hidden'
+						document.getElementById('cart-added-to-cart' + id).innerHTML = 'Product Added to Cart'
+						console.log("added")
+
+					}
+
+				}
+
+			})
+
+			return false; // for good measure
+
+
+		}
+		$(document).ready(function () {
+			/*
+									var defaults = {
+										  containerID: 'toTop', // fading element id
+										containerHoverID: 'toTopHover', // fading element hover id
+										scrollSpeed: 1200,
+										easingType: 'linear' 
+									 };
+									*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<!--// end-smoth-scrolling -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+	<script src="/scripts/scripts/bootstrap.js"></script>
+	<script src="https://apis.google.com/js/platform.js "></script>
+	<!-- js file -->
+
+	<script>
+		
+	
+	
+	
+	</script>
+	
+
+
+
+	
+	

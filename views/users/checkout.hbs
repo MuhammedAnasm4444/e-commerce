@@ -1,26 +1,28 @@
 <div class="container ">
   <div class="row">
-  {{#each address}}
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Address</h5>
-    <h6 class="card-subtitle mb-2 text-muted"><span id="{{this._id}}place">{{this.place}}</span></h6>
-    <p class="card-text">City:<span id="{{this._id}}city">{{this.city}}</span>, State:<span id="{{this._id}}state">{{this.state}}</span>  , Pincode:<span id="{{this._id}}pincode">{{this.pincode}}</span> </p>
-    <a href="" onclick="selectAddress(event,'{{this._id}}')" class="card-link">Choose This Address</a>
-  </div>
-</div>
-  {{/each}}
+    {{#each address}}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Address</h5>
+        <h6 class="card-subtitle mb-2 text-muted"><span id="{{this._id}}place">{{this.place}}</span></h6>
+        <p class="card-text">City:<span id="{{this._id}}city">{{this.city}}</span>, State:<span
+            id="{{this._id}}state">{{this.state}}</span> , Pincode:<span
+            id="{{this._id}}pincode">{{this.pincode}}</span> </p>
+        <a href="" onclick="selectAddress(event,'{{this._id}}')" class="card-link">Choose This Address</a>
+      </div>
+    </div>
+    {{/each}}
   </div>
 </div>
 <div class="container">
 
 
   <div class="row">
-    
+
     <div class="col-md-4 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Your cart</span>
-        <span class="badge badge-secondary badge-pill">3</span>
+        <span class="badge badge-secondary badge-pill">{{cartLength}}</span>
       </h4>
       <ul class="list-group mb-3">
         {{#each cartItems}}
@@ -32,23 +34,24 @@
           <span class="text-muted"> {{this.productDetails.price}}</span>
         </li>
         {{/each}}
-
-        <li class="list-group-item d-flex justify-content-between bg-light">
+        <li id="coupen-box" class="list-group-item d-flex justify-content-between bg-light" style="visibility: hidden;">
           <div class="text-success">
-            <h6 class="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
+            <h6 class="my-0">Coupen code</h6>
+
+            <small id="coupon-type-small"></small>
           </div>
-          <span class="text-success">-$5</span>
+          <span class="text-success"><span id="discount-percentage"></span>% Discount</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between">
+
+        <li id="" class="list-group-item d-flex justify-content-between">
           <span>Total (INR)</span>
-          <strong>{{totalPrice}}</strong>
+          <strong id="coupen-total-price">{{totalPrice}}</strong>
         </li>
       </ul>
 
-      <form class="card p-2"action="/place-order" method="POST">
+      <form class="card p-2" id="coupon-verify" method="POST">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Promo code">
+          <input type="text" class="form-control" id="coupon-code" name="coupon" placeholder="Apply your Coupen Code">
           <div class="input-group-append">
             <button type="submit" class="btn btn-secondary">Redeem</button>
           </div>
@@ -57,17 +60,18 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3 mt-3">Billing address</h4>
-      <form class="needs-validation" id="place-order">
+      <form class="needs-validation order-validation" id="place-order">
         <div class="row">
           <div class=" mb-3 col-md-6">
             <label for="firstName">First name</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" placeholder="" value="{{user.name}}" required="" readonly>
+            <input type="text" name="firstName" class="form-control" id="firstName" placeholder="" value="{{user.name}}"
+              required="" readonly>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
-           
+
           </div>
         </div>
 
@@ -86,14 +90,15 @@
 
         <div class="mb-3">
           <label for="email">Email <span class="text-muted"></span></label>
-          <input type="email" name="email" class="form-control" id="email" placeholder="" value="{{user.email}}" readonly>
+          <input type="email" name="email" class="form-control" id="email" placeholder="" value="{{user.email}}"
+            readonly>
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
         </div>
         <div class="mb-3">
           <label for="email">Mobile <span class="text-muted"></span></label>
-          <input type="number" name="mobile" class="form-control" id="mobile" placeholder="" value="{{user.phone}}">
+          <input type="tel" name="mobile" maxlength="10"  class="form-control" id="mobile" placeholder="" value="{{user.phone}}">
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
@@ -119,14 +124,14 @@
           <div class="col-md-4 mb-3">
             <label for="state">State</label>
             <input class="custom-select d-block w-100" id="state" required="">
-              
+
             <div class="invalid-feedback">
               Please provide a valid state.
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <label for="zip">Pin Code</label>
-            <input type="text" class="form-control" id="pincode" placeholder="" required="">
+            <input type="number" class="form-control" maxlength="6" minlength="6" id="pincode" placeholder="" required="">
             <div class="invalid-feedback">
               Zip code required.
             </div>
@@ -151,8 +156,8 @@
             <label class="custom-control-label" for="COD">Cash On Delivery</label>
           </div>
           <div class="custom-control custom-radio">
-            <input id="razorpay" name="paymentMethod" type="radio" class="custom-control-input" value="online-razorpay" checked=""
-              required="">
+            <input id="razorpay" name="paymentMethod" type="radio" class="custom-control-input" value="online-razorpay"
+              checked="" required="">
             <label class="custom-control-label" for="razo">Razorpay</label>
           </div>
           <div class="custom-control custom-radio">
@@ -162,24 +167,29 @@
             <label class="custom-control-label" for="paypal">Paypal</label>
           </div> --}}
           <div class="form-check">
-  <input id="credit" class="form-check-input" name="paymentMethod" onclick="MyFunction()"type="radio" value="COD" name="flexRadioDefault" id="flexRadioDefault1">
-  <label class="form-check-label" for="flexRadioDefault1">
-    Cash on Delivery
-  </label>
-</div>
-<div class="form-check">
-  <input id="razorpay" class="form-check-input"name="paymentMethod"onclick="MyFunction()" type="radio"  value="online-razorpay" name="flexRadioDefault" id="flexRadioDefault2" >
-  <label class="form-check-label" for="flexRadioDefault2" >
-   Razorpay
-  </label>
-</div>
-<input name="totalPrice" value="{{totalPrice}}" hidden>
-<div class="form-check">
-  <input id="paypal" class="form-check-input" name="paymentMethod"onclick="MyFunction()" type="radio" value="online-paypal" name="flexRadioDefault" id="flexRadioDefault1">
-  <label class="form-check-label" for="flexRadioDefault1">
-   Paypal
-  </label>
-</div>
+            <input id="credit" class="form-check-input" name="paymentMethod" onclick="MyFunction()" type="radio"
+              value="COD" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Cash on Delivery
+            </label>
+          </div>
+          <div class="form-check">
+            <input id="razorpay" class="form-check-input" name="paymentMethod" onclick="MyFunction()" type="radio"
+              value="online-razorpay" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Razorpay
+            </label>
+          </div>
+          <input name="totalPrice" id="final-price" value="{{totalPrice}}" hidden>
+          <input name="" id="selected-coupon"  hidden>
+          <input name="" id="selected-coupon-value"  hidden>
+          <div class="form-check">
+            <input id="paypal" class="form-check-input" name="paymentMethod" onclick="MyFunction()" type="radio"
+              value="online-paypal" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Paypal
+            </label>
+          </div>
         </div>
 
         <div class="row">
@@ -191,12 +201,334 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button id="checkout-submit" class="mb-4 btn btn-primary btn-lg btn-block" type="submit" style="visibility: hidden;">Continue with Cash On Delivery</button>
+        <button id="checkout-submit" class="mb-4 btn btn-primary btn-lg btn-block" type="submit"
+          style="visibility: hidden;">Continue with Cash On Delivery</button>
       </form>
     </div>
   </div>
   <p id="paypal-continue" style="visibility: hidden;">Click Paypal Button to Continue</p>
-         <div id="paypal-payment-button"></div>
-
+  <div id="paypal-payment-button"></div>
 
 </div>
+  <script src="/scripts/scripts/jquery-2.2.3.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+	<script src="/scripts/scripts/bootstrap.js"></script>
+	<script>
+		$('#coupon-verify').validate({
+			rules: {
+				coupon: true
+			},
+			submitHandler: (form, e) => {
+				$.ajax({
+					url: '/coupon-verify',
+					method: 'POST',
+					data: $('#coupon-verify').serialize(),
+					success: (res) => {
+						console.log(res)
+						if (res.status) {
+							if (res.couponType === 'welcomeCoupon') {
+								$('#coupon-verify').css('visibility', 'hidden')
+								var totalPrice = document.getElementById('coupen-total-price').innerHTML
+								document.getElementById('coupen-total-price').innerHTML = Math.round((totalPrice) - (totalPrice * (20 / 100)))
+								document.getElementById('coupen-box').style.visibility = 'visible'
+								document.getElementById('discount-percentage').innerHTML = 20
+								document.getElementById('coupon-type-small').innerHTML = 'welcome coupon'
+								document.getElementById('final-price').value = document.getElementById('coupen-total-price').innerHTML
+								var couponCode = document.getElementById('coupon-code').value
+
+								console.log(couponCode + "/////////////////////")
+								$('#selected-coupon').attr('name', 'coupon')
+								$('#selected-coupon-value').attr('name', 'couponValue')
+								$('#selected-coupon').val(res.couponType)
+								$('#selected-coupon-value').val(couponCode)
+
+
+							}
+							else if (res.couponType === "referalCoupon") {
+								var totalPrice = document.getElementById('coupen-total-price').innerHTML
+								document.getElementById('coupen-total-price').innerHTML = Math.round((totalPrice) - (totalPrice * (15 / 100)))
+								document.getElementById('coupen-box').style.visibility = 'visible'
+								document.getElementById('coupon-type-small').innerHTML = 'referal coupon'
+								document.getElementById('discount-percentage').innerHTML = 10
+								document.getElementById('final-price').value = document.getElementById('coupen-total-price').innerHTML
+								var couponCode = document.getElementById('coupon-code').value
+
+								console.log(couponCode + "/////////////////////")
+								$('#selected-coupon').attr('name', 'coupon')
+								$('#selected-coupon-value').attr('name', 'couponValue')
+								$('#selected-coupon').val(res.couponType)
+								$('#selected-coupon-value').val(couponCode)
+								$('#coupon-verify').css('visibility', 'hidden')
+
+							}
+							else if (res.couponType === "referedCoupon") {
+								var totalPrice = document.getElementById('coupen-total-price').innerHTML
+								document.getElementById('coupen-total-price').innerHTML = Math.round((totalPrice) - (totalPrice * (15 / 100)))
+								document.getElementById('coupen-box').style.visibility = 'visible'
+								document.getElementById('coupon-type-small').innerHTML = 'refered coupon'
+								document.getElementById('discount-percentage').innerHTML = 10
+								document.getElementById('final-price').value = document.getElementById('coupen-total-price').innerHTML
+								var couponCode = document.getElementById('coupon-code').value
+
+								console.log(couponCode + "/////////////////////")
+								$('#selected-coupon').attr('name', 'coupon')
+								$('#selected-coupon-value').attr('name', 'couponValue')
+								$('#selected-coupon').val(res.couponType)
+								$('#selected-coupon-value').val(couponCode)
+								$('#coupon-verify').css('visibility', 'hidden')
+
+							}
+
+
+
+
+						}
+						else {
+							alert('wrong coupon')
+						}
+
+					}
+				})
+			}
+
+		})
+	</script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script
+		src="https://www.paypal.com/sdk/js?client-id=AW57sRTh1bcdLwTfnEOWm0shusbLTMmRRrke3n_xRGgIUglC0WO7rzrH6dDbj24ivxBqLEyEAVUyCo-P"
+		data-namespace="paypal_sdk"></script>
+    <script>
+		function selectAddress(e, id) {
+			e.preventDefault()
+			console.log(id)
+			var place = document.getElementById(id + 'place').innerHTML
+			var city = document.getElementById(id + 'city').innerHTML
+			var state = document.getElementById(id + 'state').innerHTML
+			var pincode = document.getElementById(id + 'pincode').innerHTML
+			console.log(place, city, state, pincode)
+			document.getElementById('address').value = place
+			document.getElementById('city').value = city
+			document.getElementById('state').value = state
+			document.getElementById('pincode').value = pincode
+		}
+		console.log($("#credit").prop("checked"))
+		function MyFunction() {
+			console.log('hellllllllllllllllllllllllllllllllllllllllllllllll')
+
+			if ($("#credit").prop("checked")) {
+				console.log("hello")
+				document.getElementById("checkout-submit").style.visibility = "visible"
+				document.getElementById("checkout-submit").innerHTML = "continue with Cash On Delivery"
+
+				// do something
+			}
+			else if ($("#paypal").prop("checked")) {
+				console.log("hello")
+				// do something
+				document.getElementById("checkout-submit").style.visibility = "visible";
+				console.log(document.getElementById("checkout-submit").innerHTML)
+				document.getElementById("checkout-submit").innerHTML = "continue with Paypal"
+			}
+			else if (document.getElementById("razorpay").checked) {
+				// do something
+				console.log("hello")
+				document.getElementById("checkout-submit").style.visibility = "visible";
+				document.getElementById("checkout-submit").innerHTML = "continue with Razorpay"
+			}
+		}
+		$('#place-order').validate({
+			rules: {
+
+				email: {
+					required: true,
+					email: true,
+				},
+				mobile: {
+					required: true,
+					maxlength: 10,
+					minlength: 10
+				}
+
+
+
+			},
+			submitHandler: (form, e) => {
+				e.preventDefault();
+				$.ajax({
+					url: '/place-order',
+					data: $('#place-order').serialize(),
+					method: 'POST',
+					success: (response) => {
+						console.log(response)
+						if (response.cod) {
+							if ($("#save-info").prop("checked")) {
+								console.log("hello")
+								$.ajax({
+									url: '/save-address',
+									data: {
+
+										place: document.getElementById('address').value,
+										city: document.getElementById('city').value,
+										state: document.getElementById('state').value,
+										pincode: document.getElementById('pincode').value
+									},
+									method: 'POST',
+									success: (response) => {
+										console.log(response)
+									}
+								})
+							}
+
+							console.log("cod paid")
+							location.href = '/success/' + response.orderId
+
+						}
+						else if (response.paypal) {
+							if ($("#save-info").prop("checked")) {
+								console.log("hello")
+								$.ajax({
+									url: '/save-address',
+									data: {
+
+										place: document.getElementById('address').value,
+										city: document.getElementById('city').value,
+										state: document.getElementById('state').value,
+										pincode: document.getElementById('pincode').value
+									},
+									method: 'POST',
+									success: (response) => {
+										console.log(response)
+									}
+								})
+							}
+							document.getElementById('checkout-submit').style.visibility = "hidden";
+							document.getElementById('paypal-continue').style.visibility = "visible";
+							var order = response.orderdetails
+							paypal_sdk.Buttons({
+
+								createOrder: function (data, actions) {
+									console.log(data)
+									console.log(actions)
+									console.log(order)
+									// This function sets up the details of the transaction, including the amount and line item details.
+									return actions.order.create({
+										purchase_units: [{
+											amount: {
+												value: order.totalPrice
+											}
+										}]
+									});
+								},
+								onApprove: function (data, actions) {
+									// This function captures the funds from the transaction.
+									return actions.order.capture().then(function (details) {
+										console.log(details)
+										// This function shows a transaction success message to your buyer.
+										location.href = '/success/' + order._id
+
+									});
+								},
+								onCancel: function (data) {
+									// Show a cancel page, or return to cart
+									console.log(data)
+									window.location.href = '/failed' + order._id
+
+
+								},
+								onError: function (err) {
+									alert("Payment Please Try Again")
+									// For example, redirect to a specific error page
+									window.location.href = "/failed" + order_id;
+								}
+							}).render('#paypal-payment-button');
+						}
+						else if (response.razorpay) {
+							if ($("#save-info").prop("checked")) {
+								console.log("hello")
+								$.ajax({
+									url: '/save-address',
+									data: {
+
+										place: document.getElementById('address').value,
+										city: document.getElementById('city').value,
+										state: document.getElementById('state').value,
+										pincode: document.getElementById('pincode').value
+									},
+									method: 'POST',
+									success: (response) => {
+										console.log(response)
+									}
+								})
+							}
+							console.log(response.order)
+
+
+							if (document.getElementById('checkout-submit').style.visibility === "hidden") {
+								document.getElementById('checkout-submit').style.visibility = "visible"
+							}
+
+							var order = response.order
+							var amount = order.amount
+							console.log(order.amount + "order amount is ---------------------------------------")
+							var options = {
+								"key": "rzp_test_HvTWeRWYRE4mtd", // Enter the Key ID generated from the Dashboard
+								"amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+								"currency": "INR",
+								"name": "MyCart",
+								"description": "Test Transaction",
+								"image": "https://example.com/your_logo",
+								"order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+								"handler": function (response) {
+									alert('payment Successful')
+									verifyPayment(response, order)
+								},
+								"prefill": {
+									"name": "MyCart",
+									"email": "MyCart@example.com",
+									"contact": "9999999999"
+								},
+								"notes": {
+									"address": "Razorpay Corporate Office"
+								},
+								"theme": {
+									"color": "#3399cc"
+								}
+							};
+							var rzp1 = new Razorpay(options);
+							rzp1.on('payment.failed', function (response) {
+								paymentFailed()
+							});
+							rzp1.open();
+							function paymenFailed(payment, order) {
+								window.location.href = '/failed' + order._id
+							}
+							function verifyPayment(payment, order) {
+								$.ajax({
+									url: '/verify-payment',
+									data: {
+										payment, order
+									},
+									method: 'post',
+									success: (response) => {
+										if (response.payment) {
+											console.log('payment Succesful')
+											location.href = '/success'
+										}
+										else {
+											location.href = '/failed'
+										}
+
+									}
+								})
+							}
+
+						}
+
+					}
+
+
+				})
+
+			}
+		})
+	</script>

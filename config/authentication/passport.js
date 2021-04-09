@@ -14,89 +14,50 @@ const client = require('twilio')(accountSid, authToken);
 // .then((data) => {
 //     console.log('hello')
 // })
-module.exports = function (passport, getUserByNumber, getUserById) {
-  passport.use (
-    new LocalStrategy({ usernameField: 'phone'}, async(email, password, done) => {
-      // Match User
-      console.log('email')
-      var user = await getUserByNumber(email)
-      console.log(user)
-      if (!user) {
-        console.log("user not found")
-        return done(null, false, { message: 'That email is not registered'})
-      }
-      // Match Password
-      client.verify.services(serviceid).verificationChecks.create({to: '+91'+email, code:password})
-.then((data) => {
-  console.log(data)
-  if (data.status === "approved") {
-    console.log("otp verified")
-    return done(null, user);
-}
- else {
-  
-     console.log("incorrect otp")
-     return done(null, false, {message:' password correct'})
 
- }
-})
-      // bcrypt.compare(password, user.password, (err, isMatch) => {
-      //   if(err) throw err
-      //   if(isMatch) {
-      //     console.log("user matched")
-      //     return done(null, user);
-      //   } else {
-      //     console.log(password)
-      //      console.log(user.password)
-      //     console.log("password Incorrect")
-      //     return done(null, false, {message:' password correct'})
-      //   }
-
-    
-
-      // });
-
-    })
-  )
-  passport.serializeUser((user, done) => {
-    done(null, user._id);
-  });
-  
-  passport.deserializeUser(async(id, done) => {
-  var user =  await getUserById(id)
- 
-      done(null, user);
-   
-  });
-}
-
-
-// module.exports = function (passport, getUserByEmail, getUserById) {
+// ---------------------------otp LOGIN Password----------------------------------------
+// module.exports = function (passport, getUserByNumber, getUserById) {
 //   passport.use (
-//     new LocalStrategy({ usernameField: 'email'}, async(email, password, done) => {
+//     new LocalStrategy({ usernameField: 'phone',  passReqToCallback: true}, async(req, email, password, done) => {
 //       // Match User
-//       var user = await getUserByEmail(email)
+//       console.log('email')
+//       var user = await getUserByNumber(email)
 //       console.log(user)
 //       if (!user) {
 //         console.log("user not found")
-//         return done(null, false, { message: 'That email is not registered'})
+//         return done(null, false, req.flash('message', 'User not found' ))
 //       }
 //       // Match Password
-//       bcrypt.compare(password, user.password, (err, isMatch) => {
-//         if(err) throw err
-//         if(isMatch) {
-//           console.log("user matched")
-//           return done(null, user);
-//         } else {
-//           console.log(password)
-//            console.log(user.password)
-//           console.log("password Incorrect")
-//           return done(null, false, {message:' password correct'})
-//         }
+//       client.verify.services(serviceid).verificationChecks.create({to: '+91'+email, code:password})
+// .then((data) => {
+//   console.log(data)
+//   if (data.status === "approved") {
+//     console.log("otp verified")
+    
+//     return done(null, user);
+// }
+//  else {
+  
+//      console.log("incorrect otp")
+//      return done(null, false, req.flash('message', 'Incorrect Otp' ))
+
+//  }
+// })
+//       // bcrypt.compare(password, user.password, (err, isMatch) => {
+//       //   if(err) throw err
+//       //   if(isMatch) {
+//       //     console.log("user matched")
+//       //     return done(null, user);
+//       //   } else {
+//       //     console.log(password)
+//       //      console.log(user.password)
+//       //     console.log("password Incorrect")
+//       //     return done(null, false, {message:' password correct'})
+//       //   }
 
     
 
-//       });
+//       // });
 
 //     })
 //   )
@@ -111,3 +72,47 @@ module.exports = function (passport, getUserByNumber, getUserById) {
    
 //   });
 // }
+// <<<<<<<<<<<<<<<<<<<<<<<<<otp LOGIN Password>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+module.exports = function (passport, getUserByEmail, getUserById) {
+  passport.use (
+    new LocalStrategy({ usernameField: 'email'}, async(email, password, done) => {
+      // Match User
+      var user = await getUserByEmail(email)
+      console.log(user)
+      if (!user) {
+        console.log("user not found")
+        return done(null, false, {message:'user not found'})
+      }
+      // Match Password
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        if(err) throw err
+        if(isMatch) {
+          console.log("user matched")
+          return done(null, user);
+        } else {
+          console.log(password)
+           console.log(user.password)
+          console.log("password Incorrect")
+          return done(null, false, {message:' password correct'})
+        }
+
+    
+
+      });
+
+    })
+  )
+  passport.serializeUser((user, done) => {
+    console.log('passport serialised')
+    done(null, user._id);
+  });
+  
+  passport.deserializeUser(async(id, done) => {
+    console.log('passport deserilised')
+  var user =  await getUserById(id)
+ 
+      done(null, user);
+   
+  });
+}

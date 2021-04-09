@@ -31,6 +31,9 @@
 		href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 		rel="stylesheet">
 	<script src="https://use.fontawesome.com/6119aa66b0.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+		integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -42,6 +45,7 @@
 				<div class="col-md-3 top-info text-left mt-lg-4">
 					<a href="/profile">
 						<h6>Hello</h6>
+
 					</a>
 					<ul>
 						<li>
@@ -72,23 +76,25 @@
 						<a class="navbar-brand" href="/">
 							MyCart </a>
 					</h1>
+
+
 				</div>
 
 				<div class="col-md-3 top-info-cart text-right mt-lg-4">
 					<ul class="cart-inner-info">
 						<li class="button-log">
 							<a class="btn-open" href="#">
-								<span class="fa fa-user" aria-hidden="true"></span>
+
 							</a>
 						</li>
 						<li class="galssescart galssescart2 cart cart box_1">
 							<div>
-								<a href="/profile">Profile</a>
+								<a href="/profile" style="color: #828284;">Profile</a>
 							</div>
 							<form action="#" method="post" class="last">
 								<input type="hidden" name="cmd" value="_cart">
 								<input type="hidden" name="display" value="1">
-								<a class="top_googles_cart" href="/cart">
+								<a class="top_googles_cart" href="/cart" style="color: #828284;">
 									My Cart
 									<i class="fa fa-cart-plus" aria-hidden="true"></i>
 									{{#if cartCount}}
@@ -134,26 +140,17 @@
 					<!---->
 				</div>
 			</div>
-			<div class="search">
-				<div class="mobile-nav-button">
-					<button id="trigger-overlay" type="button">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-				<!-- open/close -->
-				<div class="overlay overlay-door">
-					<button type="button" class="overlay-close">
-						<i class="fa fa-times" aria-hidden="true"></i>
-					</button>
-					<form action="#" method="post" class="d-flex">
-						<input class="form-control" type="search" placeholder="Search here..." required="">
-						<button type="submit" class="btn btn-primary submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
+			{{#if search}}
+			<div class="ml-auto col-md-3">
+				<input id="searchProducts" class="searchBox form-control  ml-auto" type="search" placeholder="Search"
+					aria-label="Search" style="width: auto;
+    height: 31px;
+    margin-right: -30px;
+    border-radius: 50px;
+    border-color: #ff4e00;">
+				{{/if}}
 
-				</div>
-				<!-- open/close -->
+
 			</div>
 			<label class="top-log mx-auto"></label>
 			<nav class="navbar navbar-expand-lg navbar-light bg-light top-header mb-2">
@@ -167,45 +164,17 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav nav-mega mx-auto">
-						<li class="nav-item active">
+						<li class="nav-item ">
 							<a class="nav-link ml-lg-0" href="/">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="about.html">About</a>
+							<a class="nav-link" href="/about">About</a>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Features
-							</a>
-							<ul class="dropdown-menu mega-menu ">
-								<li>
-									
-									<hr>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Shop
-							</a>
-							<ul class="dropdown-menu mega-menu ">
-								<li>
-									<div class="row">
-										
-										
-							
-									</div>
-									<hr>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/sell">Sell</a>
-						</li>
+					
+						
+					
 					</ul>
 
 				</div>
@@ -234,32 +203,32 @@
 
 							<li class="mx-2">
 								<a href="#">
-									<span class="fab fa-facebook-f"></span>
+									
 								</a>
 							</li>
 							<li class="mx-2">
 								<a href="#">
-									<span class="fab fa-twitter"></span>
+							
 								</a>
 							</li>
 							<li class="mx-2">
 								<a href="#">
-									<span class="fab fa-google-plus-g"></span>
+									
 								</a>
 							</li>
 							<li class="mx-2">
 								<a href="#">
-									<span class="fab fa-linkedin-in"></span>
+									
 								</a>
 							</li>
 							<li class="mx-2">
 								<a href="#">
-									<span class="fas fa-rss"></span>
+									
 								</a>
 							</li>
 							<li class="mx-2">
 								<a href="#">
-									<span class="fab fa-vk"></span>
+								
 								</a>
 							</li>
 						</ul>
@@ -296,7 +265,7 @@
 							<a href="/error">Error</a>
 						</li>
 						<li>
-							<a href="/shop">Shop</a>
+							<a href="/">Shop</a>
 						</li>
 						<li>
 							<a href="/contact">Contact Us</a>
@@ -309,14 +278,7 @@
 					</div>
 					<div class="footer-text">
 						<p>By subscribing to our mailing list you will always get latest news and updates from us.</p>
-						<form action="#" method="post">
-							<input class="form-control" type="email" name="Email" placeholder="Enter your email..."
-								required="">
-							<button class="btn1">
-								<i class="far fa-envelope" aria-hidden="true"></i>
-							</button>
-							<div class="clearfix"> </div>
-						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -329,599 +291,7 @@
 	</footer>
 	<!-- //footer -->
 
-	<!--jQuery-->
-	<script src="/scripts/scripts/jquery-2.2.3.min.js"></script>
-	<!-- newsletter modal -->
-	<!-- Modal -->
 
-
-	<!-- Modal -->
-
-	<script>
-		$(document).ready(function () {
-			$("#myModal").modal();
-		});
-	</script>
-	<!-- // modal -->
-
-	<!--search jQuery-->
-	<script src="/scripts/scripts/modernizr-2.6.2.min.js"></script>
-	<script src="/scripts/scripts/classie-search.js"></script>
-	<script src="/scripts/scripts/demo1-search.js"></script>
-	<!--//search jQuery-->
-	<!-- cart-js -->
-	<script src="/scripts/scripts/minicart.js"></script>
-	<script>
-		googles.render();
-
-		googles.cart.on('googles_checkout', function (evt) {
-			var items, len, i;
-
-			if (this.subtotal() > 0) {
-				items = this.items();
-
-				for (i = 0, len = items.length; i < len; i++) { }
-			}
-		});
-	</script>
-
-	<!-- //cart-js -->
-	<script>
-		$(document).ready(function () {
-			$(".button-log a").click(function () {
-				$(".overlay-login").fadeToggle(200);
-				$(this).toggleClass('btn-open').toggleClass('btn-close');
-			});
-		});
-		$('.overlay-close1').on('click', function () {
-			$(".overlay-login").fadeToggle(200);
-			$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
-			open = false;
-		});
-	</script>
-	<!-- carousel -->
-	<!-- Count-down -->
-	{{!--
-	<script src="/scripts/scripts/simplyCountdown.js"></script> --}}
-	<link href="/styles/styles/simplyCountdown.css" rel='stylesheet' type='text/css' />
-	<script>
-		var d = new Date();
-		simplyCountdown('simply-countdown-custom', {
-			year: d.getFullYear(),
-			month: d.getMonth() + 2,
-			day: 25
-		});
-	</script>
-	<script src="/scripts/scripts/jquery-ui.js"></script>
-	<script>
-		//<![CDATA[ 
-		$(window).load(function () {
-			$("#slider-range").slider({
-				range: true,
-				min: 0,
-				max: 9000,
-				values: [50, 6000],
-				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-				}
-			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-
-		}); //]]>
-	</script>
-	<!--// Count-down -->
-	<script src="/scripts/scripts/owl.carousel.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('.owl-carousel').owlCarousel({
-				loop: true,
-				margin: 10,
-				responsiveClass: true,
-				responsive: {
-					0: {
-						items: 1,
-						nav: true
-					},
-					600: {
-						items: 2,
-						nav: false
-					},
-					900: {
-						items: 3,
-						nav: false
-					},
-					1000: {
-						items: 4,
-						nav: true,
-						loop: false,
-						margin: 20
-					}
-				}
-			})
-		})
-	</script>
-
-	<!-- //end-smooth-scrolling -->
-	<script src="/scripts/scripts/imagezoom.js"></script>
-	<script src="/scripts/scripts/easy-responsive-tabs.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('#horizontalTab').easyResponsiveTabs({
-				type: 'default', //Types: default, vertical, accordion           
-				width: 'auto', //auto or any width like 600px
-				fit: true, // 100% fit in a container
-				closed: 'accordion', // Start closed if in accordion view
-				activate: function (event) { // Callback function if tab is switched
-					var $tab = $(this);
-					var $info = $('#tabInfo');
-					var $name = $('span', $info);
-					$name.text($tab.text());
-					$info.show();
-				}
-			});
-			$('#verticalTab').easyResponsiveTabs({
-				type: 'vertical',
-				width: 'auto',
-				fit: true
-			});
-		});
-	</script>
-	<!-- FlexSlider -->
-	<script src="/scripts/scripts/jquery.flexslider.js"></script>
-	<script>
-		// Can also be used with $(document).ready()
-		$(window).load(function () {
-			$('.flexslider1').flexslider({
-				animation: "slide",
-				controlNav: "thumbnails"
-			});
-		});
-	</script>
-	<!-- //FlexSlider-->
-
-
-	<!-- dropdown nav -->
-	<script>
-		$(document).ready(function () {
-			$(".dropdown").hover(
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
-					$(this).toggleClass('open');
-				},
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
-					$(this).toggleClass('open');
-				}
-			);
-		});
-	</script>
-	<!-- //dropdown nav -->
-	<script src="/scripts/scripts/move-top.js"></script>
-	<script src="/scripts/scripts/easing.js"></script>
-	<script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 900);
-			});
-		});
-	</script>
-	<script>
-		$(document).ready(function () {
-			/*
-									var defaults = {
-										  containerID: 'toTop', // fading element id
-										containerHoverID: 'toTopHover', // fading element hover id
-										scrollSpeed: 1200,
-										easingType: 'linear' 
-									 };
-									*/
-
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
-
-		});
-	</script>
-	<!--// end-smoth-scrolling -->
-	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
-	<script src="/scripts/scripts/bootstrap.js"></script>
-	<!-- js file -->
-
-	<script>
-		function checkPhone() {
-  
-  var phone = document.getElementById('phonenum').value
-  var error = false
-  console.log(phone)
- $.ajax({
-   url:"/check",
-   data:{phone:phone},
-   method:'POST',
-   success:(response) => {
-     if(response.status) {
-       document.getElementById('otp-div').style.visibility="visible"
-        error = false
-     }
-     else {
-       document.getElementById('err').innerHTML = "In valid erro"
-       error = true
-       
-
-     }
-   }
- })
-}
-		$("#login-form").validate({
-			rules: {
-
-			
-				password: {
-					required: true,
-
-				}
-			}
-
-
-
-		});
-
-		$("#signup-form11").validate({
-			rules: {
-
-				name: {
-					required: true
-				},
-				email: {
-					required: true,
-					email: true
-
-				},	
-				phone:{
-					required:true,
-				},
-				password: {
-					required: true,
-
-				}
-
-			},
-			submitHandler: (form, e) => {
-				console.log("signup checking")
-				e.preventDefault();
-				$.ajax({
-					url: "/checkSignup",
-					data: $('#signup-form11').serialize(),
-					method: "POST",
-					success: function (response) {
-						console.log(response)
-						if (response.emailExist) {
-							document.getElementById('existError').innerHTML = "Email already Exist"
-						} else {
-							document.getElementById('otp-form').style.visibility = 'visible'
-							document.getElementById("signup-form11").style.visibility = 'hidden'
-			                document.getElementById('otp-phone').value = response.phone
-							
-						}
-					},
-					error: function (err) {
-						console.log(err)
-						alert("Something Error :")
-
-					}
-				})
-			}
-
-
-		});
-
-		function addToCart(e, id) {
-			e.preventDefault();
-			console.log("hellll")
-			console.log(id)
-
-			$.ajax({
-				url: '/add-to-cart',
-				method: "post",
-				data: { productId: id },
-				success: (response) => {
-					if (!response.user) {
-						window.location.href = '/login'
-					}
-
-					else {
-						var num = document.getElementById('cartCount').innerHTML
-						document.getElementById('cartCount').innerHTML = parseInt(num) + 1
-						document.getElementById('cart-Button' + id).innerHTML = ""
-						console.log("added")
-
-					}
-
-				}
-
-			})
-
-			return false; // for good measure
-
-
-		}
-		function changeQuantity(productId, productPrice, num) {
-			console.log(productId, num, productPrice)
-			var currentQuantity = parseInt(document.getElementById(productId).innerHTML)
-			num = parseInt(num)
-			$.ajax({
-				url: '/change-product-quantity',
-				data: { productId: productId, quantity: num, currentQuantity: currentQuantity },
-				method: 'post',
-				success: (response) => {
-					if (response.status) {
-						console.log('worked')
-
-						document.getElementById(productId).innerHTML = num + currentQuantity
-						document.getElementById('total-price').innerHTML = parseInt(document.getElementById('total-price').innerHTML) + (parseInt(productPrice) * num)
-
-					}
-					else if (response.removeProduct) {
-						alert('product Removed from the cart')
-						location.reload()
-					}
-
-				}
-			})
-
-		}
-		function removeProduct(productId) {
-			$.ajax({
-				url: '/remove-cart-product',
-				data: { productId: productId },
-				method: 'post',
-				success: (response) => {
-					if (response.removeProduct) {
-						alert('product Removed from the cart')
-						location.reload()
-					}
-
-				}
-			})
-		}
-
-	</script>
-
-	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-	<script
-		src="https://www.paypal.com/sdk/js?client-id=AW57sRTh1bcdLwTfnEOWm0shusbLTMmRRrke3n_xRGgIUglC0WO7rzrH6dDbj24ivxBqLEyEAVUyCo-P"
-		data-namespace="paypal_sdk"></script>
-
-
-	<script>
-		function selectAddress(e,id) {
-			e.preventDefault()
-			console.log(id)
-			var place = document.getElementById(id+'place').innerHTML
-			var city = document.getElementById(id+'city').innerHTML
-			var state = document.getElementById(id+'state').innerHTML
-			var pincode = document.getElementById(id+'pincode').innerHTML
-			console.log(place, city, state, pincode)
-			document.getElementById('address').value = place
-			document.getElementById('city').value = city
-			document.getElementById('state').value  = state
-			document.getElementById('pincode').value = pincode
-			}
-		console.log($("#credit").prop("checked"))
-		function MyFunction() {
-			if($("#save-info").prop("checked")) {
-				console.log("hello")
-				$.ajax({
-					url:'/save-address',
-					data:{
-
-			place:document.getElementById('address').value,
-			city:document.getElementById('city').value,
-			state:document.getElementById('state').value,
-			pincode:document.getElementById('pincode').value
-					},
-					method:'POST',
-					success:(response) => {
-						console.log(response)
-					}
-				})
-			}
-			if ($("#credit").prop("checked")) {
-			 console.log("hello")
-			 document.getElementById("checkout-submit").style.visibility="visible"
-			 document.getElementById("checkout-submit").innerHTML="continue with Cash On Delivery"
-
-   // do something
-}
-else if($("#paypal").prop("checked")) {
-	 console.log("hello")
-   // do something
-   document.getElementById("checkout-submit").style.visibility="visible";
-   console.log(document.getElementById("checkout-submit").innerHTML)
-   document.getElementById("checkout-submit").innerHTML="continue with Paypal"
-}
-else if(document.getElementById("razorpay").checked) {
-   // do something
-   console.log("hello")
-   document.getElementById("checkout-submit").style.visibility="visible";
-   document.getElementById("checkout-submit").innerHTML="continue with Razorpay"
-}
-		}
-		$('#place-order').validate({
-			rules: {
-
-				email: {
-					required: true,
-					email: true,
-				},
-				mobile:{
-					required:true,
-		            maxlength:10,
-					minlength:10
-				}
-
-
-
-			},
-			submitHandler: (form, e) => {
-				e.preventDefault();
-				$.ajax({
-					url: '/place-order',
-					data: $('#place-order').serialize(),
-					method: 'POST',
-					success: (response) => {
-						console.log(response)
-						if (response.cod) {
-
-							console.log("cod paid")
-							location.href = '/success/'+response.orderId
-							
-						}
-						else if (response.paypal) {
-							document.getElementById('checkout-submit').style.visibility = "hidden";
-							document.getElementById('paypal-continue').style.visibility = "visible";
-							var order = response.orderdetails
-							paypal_sdk.Buttons({
-
-								createOrder: function (data, actions) {
-									console.log(data)
-									console.log(actions)
-									console.log(order)
-									// This function sets up the details of the transaction, including the amount and line item details.
-									return actions.order.create({
-										purchase_units: [{
-											amount: {
-												value: order.totalPrice
-											}
-										}]
-									});
-								},
-								onApprove: function (data, actions) {
-									// This function captures the funds from the transaction.
-									return actions.order.capture().then(function (details) {
-										console.log(details)
-										// This function shows a transaction success message to your buyer.
-										location.href='/success/'+order._id
-
-									});
-								},
-								onCancel: function (data) {
-									// Show a cancel page, or return to cart
-									console.log(data)
-									window.location.href = '/failed'
-									
-
-								},
-								onError: function (err) {
-									alert("Payment Please Try Again")
-									// For example, redirect to a specific error page
-									window.location.href = "/failed";
-								}
-							}).render('#paypal-payment-button');
-						}
-						else if (response.razorpay) {
-							console.log(response.order)
-
-
-							if(document.getElementById('checkout-submit').style.visibility === "hidden") {
-								document.getElementById('checkout-submit').style.visibility = "visible"
-							}
-
-							var order = response.order
-							var options = {
-								"key": "rzp_test_HvTWeRWYRE4mtd", // Enter the Key ID generated from the Dashboard
-								"amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-								"currency": "INR",
-								"name": "MyCart",
-								"description": "Test Transaction",
-								"image": "https://example.com/your_logo",
-								"order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-								"handler": function (response) {
-									alert('payment Successful')
-									verifyPayment(response, order)
-								},
-								"prefill": {
-									"name": "MyCart",
-									"email": "MyCart@example.com",
-									"contact": "9999999999"
-								},
-								"notes": {
-									"address": "Razorpay Corporate Office"
-								},
-								"theme": {
-									"color": "#3399cc"
-								}
-							};
-							var rzp1 = new Razorpay(options);
-							rzp1.on('payment.failed', function (response) {
-								paymentFailed()
-							});
-							rzp1.open();
-							function verifyPayment(payment, order) {
-								$.ajax({
-									url: '/verify-payment',
-									data: {
-										payment, order
-									},
-									method: 'post',
-									success: (response) => {
-										if (response.payment){
-                                         console.log('payment Succesful')
-											location.href = '/success'
-										}
-										else {
-											location.href = '/failed'
-										}
-											
-									}
-								})
-							}
-
-						}
-
-					}
-
-
-				})
-
-			}
-		})
-	</script>
-	<script>
-		
-		function editProfile() {
-			$('#profile-form :input').css({"border": "aliceblue", "border-style": "outset"});
-			$('#profile-form :input').prop('readonly', false);
-			$('#profile-save').css("visibility","visible");
-    
-
-		}
-		$('#profile-form').validate({
-			rules: {
-
-				name: {
-					required: true,
-					
-				},
-				email: {
-					required: true,
-					email: true
-
-				},
-				phone: {
-					required: true,
-					number:true,
-					maxlength:10
-
-				}
-
-			},
-			
-
-		})
-	</script>
 </body>
 
 </html>

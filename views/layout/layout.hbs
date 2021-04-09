@@ -17,435 +17,772 @@ Author URL: http://w3layouts.com
 
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="/styles/cropper.css"> 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.0.2/css/dataTables.dateTime.min.css">
+  <link rel="stylesheet" type="text/css" href="/styles/cropper.css">
 
 </head>
 
 <body class="sidebar-menu-collapsed">
   <div class="se-pre-con"></div>
-{{#if vendor}}
-{{>vendor-header}}
-{{else}}
-{{>admin-header}}
-{{/if}}
+  {{#if vendor}}
+  {{>vendor-header}}
+  {{else}}
+  {{>admin-header}}
+  {{/if}}
   <!-- //header-ends -->
- {{{body}}}
- 
-</section>
+  {{{body}}}
+
+  </section>
   <!--footer section start-->
-<footer class="dashboard">
-  <p>&copy 2020 Collective. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank"
-      class="text-primary">W3layouts.</a></p>
-</footer>
-<!--footer section end-->
-<!-- move top -->
-<button onclick="topFunction()" id="movetop" class="bg-primary" title="Go to top">
-  <span class="fa fa-angle-up"></span>
-</button>
-<script>
-  // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function () {
-    scrollFunction()
-  };
+  <footer class="dashboard" style=" 
+  bottom: 0;
+  width: 100%;
+   ">
 
-  function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.getElementById("movetop").style.display = "block";
-    } else {
-      document.getElementById("movetop").style.display = "none";
-    }
-  }
-
-  // When the user clicks on the button, scroll to the top of the document
-  function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
-</script>
-<!-- /move top -->
-
-
-<script src="/scripts/jquery-3.3.1.min.js"></script>
-<script src="/scripts/jquery-1.10.2.min.js"></script>
-
-<!-- chart js -->
-<script src="/scripts/Chart.min.js"></script>
-<script src="/scripts/utils.js"></script>
-<!-- //chart js -->
-
-<!-- Different scripts of charts.  Ex.Barchart, Linechart -->
-<script src="/scripts//bar.js"></script>
-<script src="/scripts/linechart.js"></script>
-<!-- //Different scripts of charts.  Ex.Barchart, Linechart -->
-
-
-<script src="/scripts/jquery.nicescroll.js"></script>
-<script src="/scripts//scripts.js"></script>
-
-<!-- close script -->
-<script>
-  var closebtns = document.getElementsByClassName("close-grid");
-  var i;
-
-  for (i = 0; i < closebtns.length; i++) {
-    closebtns[i].addEventListener("click", function () {
-      this.parentElement.style.display = 'none';
-    });
-  }
-</script>
-<!-- //close script -->
-
-<!-- disable body scroll when navbar is in active -->
-<script>
-  $(function () {
-    $('.sidebar-menu-collapsed').click(function () {
-      $('body').toggleClass('noscroll');
-    })
-  });
-</script>
-<!-- disable body scroll when navbar is in active -->
-
- <!-- loading-gif Js -->
- <script src="/scripts/modernizr.js"></script>
- <script>
-     $(window).load(function () {
-         // Animate loader off screen
-         $(".se-pre-con").fadeOut("slow");;
-     });
- </script>
- <!--// loading-gif Js -->
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/scripts/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.js" integrity="sha512-XL8wKq9jUbb9LMyrezd19IPRrf41omJUvZpqTXlpGXREAFbmoulbt3yBv+Lw+L007NL5tL0HRfnlXeKtvlvITg==" crossorigin="anonymous"></script>
+  </footer>
+  <!--footer section end-->
+  <!-- move top -->
+  <button onclick="topFunction()" id="movetop" class="bg-primary" title="Go to top">
+    <span class="fa fa-angle-up"></span>
+  </button>
   <script>
-     var imgg = new Image()
-     var imggside = new Image()
-     var imggrear = new Image()
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction()
+    };
 
-      imgg.src = document.getElementById('thumbnail').src
-      imggside.src = document.getElementById('side').src
-      imggrear.src = document.getElementById('rear').src
-      console.log(document.getElementById('side').src)
-      console.log(document.getElementById('rear').src)
-     var imgdata =   function getDataUrl(img) {
-   // Create canvas
-   const canvas = document.createElement('canvas');
-   const ctx = canvas.getContext('2d');
-   // Set width and height
-   canvas.width = img.width;
-   canvas.height = img.height;
-   // Draw the image
-   ctx.drawImage(img, 0, 0);
-   return canvas.toDataURL('image/png');
-}
-  document.getElementById('base64Image').value = imgdata(imgg)
-  document.getElementById('base64ImageSide').value = imgdata(imggside)
-  document.getElementById('base64ImageRear').value = imgdata(imggrear)
-
-
-  </script>
- <script >
-  // console.log(document.getElementById('thumbnail').src)
-   // var j = document.getElementById('thumbnail').src
-   // console.log(document.getElementById('inputTb').value+"--------------------------------")
-    var canvas  = $("#canvas"),
-    context = canvas.get(0).getContext("2d"),
-    $result = $('#result');
-  
-     // var imgg =new Image()
-     // imgg.src = j
-       //console.log('going to image')
-      // console.log(imgg)
-     //var imgdata =   function getDataUrl(img) {
-   // Create canvas
-  // const canvas = document.createElement('canvas');
-  // const ctx = canvas.getContext('2d');
-   // Set width and height
-   //canvas.width = img.width;
-  // canvas.height = img.height;
-   // Draw the image
-  // ctx.drawImage(img, 0, 0);
-  // return canvas.toDataURL('image/png');
-//}
-
-$('#inputTb').on( 'change', function(){
-    if (this.files && this.files[0]) {
-      if ( this.files[0].type.match(/^image\//) ) {
-         console.log(this.files[0])
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-          console.log(evt)
-           var img = new Image();
-           img.onload = function() {
-             context.canvas.height = img.height;
-             context.canvas.width  = img.width;
-             context.drawImage(img, 0, 0);
-             var cropper = canvas.cropper({
-             aspectRatio: 'free',
-             viewMode:1
-
-             });
-             $('#btnCrop').click(function() {
-                // Get a string base 64 data url
-
-                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
-                
- 
-                document.getElementById('thumbnail').src = croppedImageDataURL
-   
-                document.getElementById('base64Image').value = croppedImageDataURL
-                 console.log("thumbnail")
-
-               // $result.append( $('<img>').attr('src', croppedImageDataURL) );
-             });
-             $('#btnRestore').click(function() {
-               canvas.cropper('reset');
-               $result.empty();
-               document.getElementById('thumbnail').src = ''
-                document.getElementById('base64Image').value = ''
-             });
-           };
-           img.src = evt.target.result;
-				};
-        reader.readAsDataURL(this.files[0]);
-      }
-      else {
-        alert("Invalid file type! Please select an image file.");
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("movetop").style.display = "block";
+      } else {
+        document.getElementById("movetop").style.display = "none";
       }
     }
-    else {
-      alert('No file(s) selected.');
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <!-- /move top -->
+
+
+  <script src="/scripts/jquery-3.3.1.min.js"></script>
+  <script src="/scripts/jquery-1.10.2.min.js"></script>
+
+  <!-- chart js -->
+  <script src="/scripts/Chart.min.js"></script>
+  <script src="/scripts/utils.js"></script>
+  <!-- //chart js -->
+
+  <!-- Different scripts of charts.  Ex.Barchart, Linechart -->
+  <script>
+    new Chart(document.getElementById("barchart"), {
+      type: 'pie',
+      data: {
+        labels: ['Products', 'Customers', 'Orders'],
+        datasets: [{
+          data: [{{ products }}, {{ customers }}, 8],
+      backgroundColor: [('Products', '#ff6384'),
+      ('Customers', '#36a2eb'),
+      ('Orders', '#cc65fe'),
+      ],
+      label: 'Sales',
+
+    }]
+	},
+      options: {
+      responsive: true,
+      legend: {
+        position: 'top',
+      },
     }
 });
-var canvasSide = $("#canvasSide"),
-    contextSide = canvasSide.get(0).getContext("2d"),
-    $result = $('#result');
+  </script>
+  <script>
+    new Chart(document.getElementById("adminchart"), {
+      type: 'pie',
+      data: {
+        labels: ['Vendors', 'Products', 'Users', 'Orders'],
+        datasets: [{
+          data: [{{ stats.vendors }}, {{ stats.products }}, {{ stats.users }}, {{ stats.orders }}],
+      backgroundColor: [('Products', '#ff6384'),
+      ('Customers', '#36a2eb'),
+      ('Orders', '#cc65fe'),
+    ],
+      label: 'Sales',
+		
+		}]
+	},
+      options: {
+      responsive: true,
+      legend: {
+        position: 'top',
+      },
+    }
+});
+  </script>
+  <script>
+    new Chart(document.getElementById("admin-chart-revenue"), {
+      type: 'bar',
+      data: {
+        labels: ['Products', 'Sales'],
+        datasets: [{
+          data: [{{ stats.products }}, {{ stats.orders }}],
+      backgroundColor: [('Products', '#ff6384'),
 
-$('#inputSide').on( 'change', function(){
-    if (this.files && this.files[0]) {
-      if ( this.files[0].type.match(/^image\//) ) {
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-           var imgSide = new Image();
-           console.log(imgSide+"lllllllllllllllllllllllllllllllllll")
-           
-           imgSide.onload = function() {
-              console.log(imgSide.height+"lllllllllllllllllllllllllllllllllll")
-             contextSide.canvas.height = imgSide.height;
-             contextSide.canvas.width  = imgSide.width;
-             contextSide.drawImage(imgSide, 0, 0);
-             var cropper = canvasSide.cropper({
-               aspectRatio: 'free',
-               viewMode:1
-             }); console.log(imgSide+"lllllllllllllllllllllllllllllllllll")
-             $('#btnCropSide').click(function() {
+      ('Sales', '#cc65fe'),
+      ],
+      label: 'Sales'
+
+    }]
+	},
+      options: {
+      responsive: true,
+      legend: {
+        position: 'top',
+      },
+    }
+});
+  </script>
+  <script>
+    new Chart(document.getElementById("linechart"), {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+          label: 'Product',
+          backgroundColor: window.chartColors.navy,
+          borderColor: window.chartColors.navy,
+          data: [0, 0, {{ products }}],
+        fill: false,
+      }, {
+      label: 'Sales',
+      fill: false,
+      backgroundColor: window.chartColors.purple,
+      borderColor: window.chartColors.purple,
+      data: [0, 0, {{ sales }}],
+		}]
+	},
+      options: {
+      responsive: true,
+      // title: {
+      // 	display: true,
+      // 	text: 'Chart.js Line Chart'
+      // },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Month'
+          }
+        }],
+        yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Value'
+          }
+        }]
+      }
+    }
+});</script>
+  <!-- //Different scripts of charts.  Ex.Barchart, Linechart -->
+
+
+  <script src="/scripts/jquery.nicescroll.js"></script>
+  <script src="/scripts//scripts.js"></script>
+
+  <!-- close script -->
+  <script>
+    var closebtns = document.getElementsByClassName("close-grid");
+    var i;
+
+    for (i = 0; i < closebtns.length; i++) {
+      closebtns[i].addEventListener("click", function () {
+        this.parentElement.style.display = 'none';
+      });
+    }
+  </script>
+  <!-- //close script -->
+
+  <!-- disable body scroll when navbar is in active -->
+  <script>
+    $(function () {
+      $('.sidebar-menu-collapsed').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- disable body scroll when navbar is in active -->
+
+  <!-- loading-gif Js -->
+  <script src="/scripts/modernizr.js"></script>
+  <script>
+    $(window).load(function () {
+      // Animate loader off screen
+      $(".se-pre-con").fadeOut("slow");;
+    });
+  </script>
+  <!--// loading-gif Js -->
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/scripts/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.js"
+    integrity="sha512-XL8wKq9jUbb9LMyrezd19IPRrf41omJUvZpqTXlpGXREAFbmoulbt3yBv+Lw+L007NL5tL0HRfnlXeKtvlvITg=="
+    crossorigin="anonymous"></script>
+
+
+  <script>
+
+    var imgg = new Image()
+    var imggside = new Image()
+    var imggrear = new Image()
+
+    imgg.src = document.getElementById('thumbnail').src
+    imggside.src = document.getElementById('side').src
+    imggrear.src = document.getElementById('rear').src
+    console.log('---------------side and rear------------------------')
+    console.log(document.getElementById('thumbnail').src)
+    console.log(document.getElementById('side').src)
+    console.log(document.getElementById('rear').src)
+    var imgdata = function getDataUrl(img) {
+      // Create canvas
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      // Set width and height
+      canvas.width = img.width;
+      canvas.height = img.height;
+      // Draw the image
+      ctx.drawImage(img, 0, 0);
+      return canvas.toDataURL('image/png');
+    }
+    document.getElementById('base64Image').value = imgdata(imgg)
+
+    document.getElementById('base64ImageSide').value = imgdata(imggside)
+
+    document.getElementById('base64ImageRear').value = imgdata(imggrear)
+
+
+
+
+
+    console.log(document.getElementById('base64Image').value)
+    console.log(document.getElementById('base64ImageSide').value)
+
+  </script>
+  <script>
+
+    function discount() {
+      var actualPrice = parseInt(document.getElementById('actual-price').value)
+      var discountPercentage = parseInt(document.getElementById('discount-percentage').value)
+      console.log(actualPrice)
+      document.getElementById('discounted-price').value = actualPrice - (actualPrice * (discountPercentage / 100))
+    }
+
+  </script>
+  <script>
+    $('#offer-form').validate({
+      rules: {
+        discountPercentage: {
+          number: true,
+          max: 80,
+          min: 1
+        }
+      },
+      submitHandler: (form, e) => {
+
+        e.preventDefault()
+
+        $.ajax({
+          url: '/vendor/add-offer',
+          data: {
+            actualPrice: parseInt(document.getElementById('actual-price').value),
+            discountPrice: document.getElementById('discounted-price').value,
+            productId: document.getElementById('offer-product-id').value
+          },
+          method: 'POST',
+          success: (res) => {
+            location.reload()
+          }
+        })
+
+
+      }
+    })
+
+  </script>
+
+  <script>
+    // console.log(document.getElementById('thumbnail').src)
+    // var j = document.getElementById('thumbnail').src
+    // console.log(document.getElementById('inputTb').value+"--------------------------------")
+    var canvas = $("#canvas"),
+      context = canvas.get(0).getContext("2d"),
+      $result = $('#result');
+
+
+    // var imgg =new Image()
+    // imgg.src = j
+    //console.log('going to image')
+    // console.log(imgg)
+    //var imgdata =   function getDataUrl(img) {
+    // Create canvas
+    // const canvas = document.createElement('canvas');
+    // const ctx = canvas.getContext('2d');
+    // Set width and height
+    //canvas.width = img.width;
+    // canvas.height = img.height;
+    // Draw the image
+    // ctx.drawImage(img, 0, 0);
+    // return canvas.toDataURL('image/png');
+    //}
+
+    $('#inputTb').on('change', function () {
+      canvas.cropper('destroy')
+      $('#btnCrop').css('visibility', 'visible')
+      $('#btnRestore').css('visibility', 'visible')
+      if (this.files && this.files[0]) {
+        if (this.files[0].type.match(/^image\//)) {
+          console.log(this.files[0])
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+
+            var img = new Image();
+
+            img.onload = function () {
+              context.canvas.height = img.height;
+              context.canvas.width = img.width;
+
+
+
+              context.drawImage(img, 0, 0);
+              var cropper = canvas.cropper({
+                aspectRatio: 1 / 1,
+                cropBoxMovable: false,
+                minCropWidth: 500,
+                minCropHeight: 500,
+                movable: true
+
+              });
+              $('#btnCrop').click(function () {
+                // Get a string base 64 data url
+
+                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png");
+
+
+                document.getElementById('thumbnail').src = croppedImageDataURL
+
+                document.getElementById('base64Image').value = croppedImageDataURL
+                console.log("thumbnail")
+
+                // $result.append( $('<img>').attr('src', croppedImageDataURL) );
+              });
+              $('#btnRestore').click(function () {
+
+                canvas.cropper('reset');
+                canvas.cropper('destroy')
+                document.getElementById('canvas').style.visibility = 'hidden'
+
+                document.getElementById('thumbnail').src = ''
+                document.getElementById('inputTb').value = ''
+                //context.clearRect(0, 0, canvas.width, canvas.height);
+                document.getElementById('base64Image').value = ''
+              });
+            };
+            img.src = evt.target.result;
+          };
+          reader.readAsDataURL(this.files[0]);
+        }
+        else {
+          alert("Invalid file type! Please select an image file.");
+        }
+      }
+      else {
+        alert('No file(s) selected.');
+      }
+    });
+    var canvasSide = $("#canvasSide"),
+      contextSide = canvasSide.get(0).getContext("2d"),
+      $result = $('#result');
+
+    $('#inputSide').on('change', function () {
+      canvasSide.cropper('destroy')
+      $('#btnCropSide').css('visibility', 'visible')
+      $('#btnRestoreSide').css('visibility', 'visible')
+      if (this.files && this.files[0]) {
+        if (this.files[0].type.match(/^image\//)) {
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            var imgSide = new Image();
+            console.log(imgSide + "lllllllllllllllllllllllllllllllllll")
+
+            imgSide.onload = function () {
+              console.log(imgSide.height + "lllllllllllllllllllllllllllllllllll")
+              contextSide.canvas.height = imgSide.height;
+              contextSide.canvas.width = imgSide.width;
+              contextSide.drawImage(imgSide, 0, 0);
+              var cropper = canvasSide.cropper({
+                aspectRatio: 1 / 1,
+
+              });
+              $('#btnCropSide').click(function () {
                 // Get a string base 64 data url
                 console.log(document.getElementById('base64Image').value)
                 var croppedImageDataURL = canvasSide.cropper('getCroppedCanvas').toDataURL("image/png");
-                 console.log("side")
+                console.log("side")
                 document.getElementById('side').src = croppedImageDataURL
                 document.getElementById('base64ImageSide').value = croppedImageDataURL
-   
-               // $result.append( $('<img>').attr('src', croppedImageDataURL) );
-             });
-             $('#btnRestoreSide').click(function() {
-               canvasSide.cropper('reset');
-               $result.empty();
-               document.getElementById('side').src = ''
+
+                // $result.append( $('<img>').attr('src', croppedImageDataURL) );
+              });
+              $('#btnRestoreSide').click(function () {
+                canvasSide.cropper('reset');
+                canvas.cropper('destroy')
+                document.getElementById('canvas').style.visibility = 'hidden'
+
+                document.getElementById('side').src = ''
                 document.getElementById('base64ImageSide').value = ''
-             });
-           };
-           imgSide.src = evt.target.result;
-				};
-        reader.readAsDataURL(this.files[0]);
+              });
+            };
+            imgSide.src = evt.target.result;
+          };
+          reader.readAsDataURL(this.files[0]);
+        }
+        else {
+          alert("Invalid file type! Please select an image file.");
+        }
       }
       else {
-        alert("Invalid file type! Please select an image file.");
+        alert('No file(s) selected.');
       }
-    }
-    else {
-      alert('No file(s) selected.');
-    }
-});
-var canvasRear = $("#canvasRear"),
-    contextRear = canvasRear.get(0).getContext("2d"),
-    $result = $('#result');
+    });
+    var canvasRear = $("#canvasRear"),
+      contextRear = canvasRear.get(0).getContext("2d"),
+      $result = $('#result');
 
-$('#inputRear').on( 'change', function(){
-    if (this.files && this.files[0]) {
-      if ( this.files[0].type.match(/^image\//) ) {
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-           var imgRear = new Image();
-           
-           
-           imgRear.onload = function() {
-              console.log(imgRear.height+"lllllllllllllllllllllllllllllllllll")
-             contextRear.canvas.height = imgRear.height;
-             contextRear.canvas.width  = imgRear.width;
-             contextRear.drawImage(imgRear, 0, 0);
-             var cropper = canvasRear.cropper({
-               aspectRatio: 'free',
-               viewMode:1
-             }); 
-             $('#btnCropRear').click(function() {
+    $('#inputRear').on('change', function () {
+      canvasRear.cropper('destroy')
+      $('#btnCropRear').css('visibility', 'visible')
+      $('#btnRestoreRear').css('visibility', 'visible')
+      if (this.files && this.files[0]) {
+        if (this.files[0].type.match(/^image\//)) {
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            var imgRear = new Image();
+
+
+            imgRear.onload = function () {
+              console.log(imgRear.height + "lllllllllllllllllllllllllllllllllll")
+              contextRear.canvas.height = imgRear.height;
+              contextRear.canvas.width = imgRear.width;
+              contextRear.drawImage(imgRear, 0, 0);
+              var cropper = canvasRear.cropper({
+                aspectRatio: 1 / 1,
+
+              });
+              $('#btnCropRear').click(function () {
                 // Get a string base 64 data url
                 var croppedImageDataURL = canvasRear.cropper('getCroppedCanvas').toDataURL("image/png");
-                 console.log("Rear")
+                console.log("Rear")
                 document.getElementById('rear').src = croppedImageDataURL
                 document.getElementById('base64ImageRear').value = croppedImageDataURL
-   
-               // $result.append( $('<img>').attr('src', croppedImageDataURL) );
-             });
-             $('#btnRestoreRear').click(function() {
-               canvasRear.cropper('reset');
-               $result.empty();
-               document.getElementById('Rear').src = ''
+
+                // $result.append( $('<img>').attr('src', croppedImageDataURL) );
+              });
+              $('#btnRestoreRear').click(function () {
+                canvasRear.cropper('reset');
+                canvas.cropper('destroy')
+                document.getElementById('canvas').style.visibility = 'hidden'
+                document.getElementById('Rear').src = ''
                 document.getElementById('base64ImageRear').value = ''
-             });
-           };
-           imgRear.src = evt.target.result;
-				};
-        reader.readAsDataURL(this.files[0]);
+              });
+            };
+            imgRear.src = evt.target.result;
+          };
+          reader.readAsDataURL(this.files[0]);
+        }
+        else {
+          alert("Invalid file type! Please select an image file.");
+        }
       }
       else {
-        alert("Invalid file type! Please select an image file.");
+        alert('No file(s) selected.');
       }
+    });
+
+
+  </script>
+  <script>
+    var productExist = false
+    $(document).ready(function () {
+      $('#product-table').DataTable();
+    });
+    function changeQuantity(productId, num) {
+      console.log(productId, num)
     }
-    else {
-      alert('No file(s) selected.');
+    function setDeliveryDate() {
+      console.log('jello')
+      $.ajax({
+        url: "/vendor/add-delivery-date",
+        method: "post",
+        data: $('#delivery-date').serialize(),
+        success: (response) => {
+          if (response.status) {
+            document.getElementById("delivery-added-date").innerHTML = "date Added"
+
+          }
+        }
+      })
     }
-});
-     
 
-</script>
- <script>
-   var productExist = false
-   $(document).ready( function () {
-    $('#product-table').DataTable();
-} );
-function changeQuantity(productId, num) {
-  console.log(productId,num)
-}
+    function checkProduct() {
 
-function checkProduct() {
-  
-  var productName = document.getElementById('inputProductName').value
-  console.log(productName)
- $.ajax({
-   url:"/vendor/check-product",
-   data:{product:productName},
-   method:'POST',
-   success:(response) => {
-     if(response) {
-       document.getElementById('productErr').innerHTML = "Product name Already Declared"
-        productExist = true
-     }
-     else {
-       document.getElementById('productErr').innerHTML = ""
-       productExist = false
-       
+      var productName = document.getElementById('inputProductName').value
+      console.log(productName)
+      $.ajax({
+        url: "/vendor/check-product",
+        data: { product: productName },
+        method: 'POST',
+        success: (response) => {
+          if (response) {
+            document.getElementById('productErr').innerHTML = "Product name Already Declared"
+            productExist = true
+          }
+          else {
+            document.getElementById('productErr').innerHTML = ""
+            productExist = false
 
-     }
-   }
- })
-}
-         $("#add-vendor").validate({
+
+          }
+        }
+      })
+    }
+    $("#add-vendor").validate({
       rules: {
 
         email: {
           required: true,
-          email:true,
+          email: true,
         },
         owner: {
-        required:true,
-       
+          required: true,
+
         },
         brandName: {
-          required:true,
-          
+          required: true,
+
         },
-        address:{
-          required:true
+        address: {
+          required: true
         },
-        phone:{
-          required:true,
-          number:true,
-          minlength:10
+        phone: {
+          required: true,
+          number: true,
+          minlength: 10
         }
-        
-  
+
+
 
       },
 
-  submitHandler:(form, e)=>{
-       console.log("add vendor")
-              e.preventDefault();
-                      $.ajax({
-              url:"/admin/add-vendor",
-              data:$('form').serialize(),
-              method:"POST",
-              success:function (response){
-                if(response){
-                  
-                window.location.href='/admin'
-              }
-              },
-              error:function (err){
-                  console.log(err)
-                  alert("Something Error :")
-  
-              }
-          })        
-        
-  }
+      submitHandler: (form, e) => {
+        console.log("add vendor")
+        e.preventDefault();
+        $.ajax({
+          url: "/admin/add-vendor",
+          data: $('form').serialize(),
+          method: "POST",
+          success: function (response) {
+            if (response) {
+
+              window.location.href = '/admin'
+            }
+          },
+          error: function (err) {
+            console.log(err)
+            alert("Something Error :")
+
+          }
+        })
+
+      }
 
 
     });
-      $("#add-product").validate({
+    $("#add-product").validate({
       rules: {
 
         product: {
           required: true,
-          
+
         },
         price: {
-        required:true,
-        number:true,
-        minlength:1
-       
+          required: true,
+          number: true,
+          minlength: 1
+
         },
         description: {
-          required:true,
-          minlength:6,
+          required: true,
+          minlength: 6,
 
-          
+
         },
-       image:{
-          required:true
+        thumbnail: {
+          required: true
+        },
+        side: {
+          required: true
+        },
+        rear: {
+          required: true
         },
       },
-      submitHandler:(form, e) => {
+      submitHandler: (form, e) => {
         console.log(productExist)
         e.preventDefault()
-              if(productExist) {
-                alert("please change product name")
-              }
-              else {
-                form.submit();
-                }
+        if (productExist) {
+          alert("please change product name")
+        }
+        else {
+          form.submit();
+        }
       }
-     
+
+
+    });
+    $("#edit-product").validate({
+      rules: {
+        product: {
+          required: true,
+        },
+        price: {
+          required: true,
+          number: true,
+          minlength: 1
+        },
+        description: {
+          required: true,
+          minlength: 6,
+
+
+        },
+
+      },
+      submitHandler: (form, e) => {
+        console.log(productExist)
+        e.preventDefault()
+        if (productExist) {
+          alert("please change product name")
+        }
+        else {
+          form.submit();
+        }
+      }
+
 
     });
 
-    </script>
+  </script>
+
+  <script src="https://rawgit.com/unconditional/jquery-table2excel/master/src/jquery.table2excel.js"></script>
+  <script>
+    $("#excel-button").click(function () {
+      console.log('hello')
+
+      $("#table2excel").table2excel({
+        // exclude CSS class
+        exclude: ".noExl",
+        name: "Worksheet Name",
+        filename: "SalesReport",//do not include extension
+        fileext: ".xls" // file extension
+      });
+
+
+    });
+
+
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdn.datatables.net/datetime/1.0.2/js/dataTables.dateTime.min.js"></script>
+
+  <script>
+    var table;
+
+    //$(document).ready( function () {
+    // $('#table2excel').DataTable();
+    //} );
+    var minDate, maxDate;
+
+    // Custom filtering function which will search data in column four between two values
+    $.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+
+        var min = minDate.val();
+        var max = maxDate.val();
+
+        var date = new Date(data[1]);
+
+        if (
+          (min === null && max === null) ||
+          (min === null && date <= max) ||
+          (min <= date && max === null) ||
+          (min <= date && date <= max)
+        ) {
+          console.log("hello")
+          return true;
+        }
+        return false;
+      }
+    );
+
+    $(document).ready(function () {
+      // Create date inputs
+      minDate = new DateTime($('#min'), {
+        format: 'MMMM Do YYYY'
+      });
+      maxDate = new DateTime($('#max'), {
+        format: 'MMMM Do YYYY'
+      });
+
+      // DataTables initialisation
+      table = $('#table2excel').DataTable();
+
+      // Refilter the table
+      $('#min, #max').on('change', function () {
+        table.draw();
+        if (!table.data().any()) {
+
+          document.getElementById('excel-button').style.visibility = 'hidden'
+        }
+        else document.getElementById('excel-button').style.visibility = 'visible'
+      });
+
+
+
+
+    });
+
+
+
+  </script>
 
 </body>
 
 </html>
-  

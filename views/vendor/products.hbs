@@ -39,7 +39,7 @@
       <td>{{this.price}}</td>
       <td>Electronics/Mobile</td>
       <td><a href="/vendor/view-product/{{this._id}}" class="btn btn-info">View</a> 
-      <a href="/vendor/delete-product/{{this._id}}" onclick="return alert('Are you sure')" class="btn btn-danger">Delete</a></td>
+      <a href="/vendor/delete-product/{{this._id}}" onclick="return confirm('Are you sure')" class="btn btn-danger">Delete</a></td>
     </tr>
     {{/each}}
   

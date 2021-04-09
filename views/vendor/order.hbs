@@ -1,52 +1,114 @@
 <div class="main-content">
 
-    <!-- content -->
-    <div class="container-fluid content-top-gap">
+  <!-- content -->
+  <div class="container-fluid content-top-gap">
 
 
-        <!-- breadcrumbs -->
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb my-breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Forms</li>
-            </ol> 
-            <div class="row">
-                <a href="/vendor/add-product" class=" ml-auto btn btn-info"></a>
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb my-breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Forms</li>
+      </ol>
+      <div class="row">
 
-            </div>
-            
-        </nav>
-        <!-- //breadcrumbs -->
-        <!-- forms -->
-<section class="forms">
-<!-- forms 2 -->
-          <table id="product-table" class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Order Id</th>
-      <th scope="col">Customer</th>
-      <th scope="col">Total Amount</th>
-      <th scope="col">Payment Method</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-      {{#each order}}
-    <tr>
-        
-      <th scope="row">{{incremented @index}}</th>
-     <td>ORD{{this._id}}</td>
-     <td>{{this.user.name}}</td>
-      <td>{{this.totalPrice}}</td>
-      <td>{{this.paymentMethod}}</td>
-      <td>{{this.status}}</td>
-    </tr>
-    {{/each}}
-  
-  </tbody>
-</table>
-            <!-- //forms 2 -->
-            </section>
-            </div>
-            </div>
+
+      </div>
+
+    </nav>
+    <!-- //breadcrumbs -->
+    <!-- forms -->
+    <section class="forms">
+      <!-- forms 2 -->
+
+      <table id="product-table" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order Id</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Product</th>
+
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each order}}
+          <tr>
+
+            <th scope="row">{{incremented @index}}</th>
+            <td>{{this.product.order}}</td>
+            <td>{{this.user.name}}</td>
+            <td>{{this.product.productDetails.product}}</td>
+            <td>{{this.product.status}}</td>
+            <td><a type="button" data-toggle="modal" data-target="#exampleModalCenter{{this.product.order}}"><i
+                  class="fa fa-arrow-right"></i></a>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter{{this.product.order}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">{{this.product.productDetails.product}}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div>
+                        <div class="ml-auto ">
+                          <p><span style="font-weight: bolder;">Order ID</span>: {{this.product.order}}</p>
+                          <span style="font-weight: bolder;">Product</span>:{{this.product.productDetails.product}}
+                        </div>
+                        <div>
+                          <span style="font-weight: bolder;">Quantiy</span>:{{this.product.quantity}}, <span
+                            style="font-weight: bolder;">TotalPrice</span>:{{this.product.productPrice}}
+                        </div>
+                        <div>
+
+                          {{#if this.product.shipped}}
+                          <span style="font-weight: bolder;">Shipped:</span><i class="fa fa-check text-success"
+                            aria-hidden="true"></i>
+                          {{else}}
+                          <form id="delivery-date">
+                            <span>Set delivey date for this product</span>
+                            <input type="date" name="deliveryDate" id="date-delivery" onchange="setDeliveryDate()" />
+                            <input type="text" name="orderId" value="{{this._id}}" hidden>
+                            <input type="text" name="userId" value="{{this.userId}}" hidden>
+                            <input type="text" name="productOrderId" value="{{this.product.order}}" hidden>
+                          </form>
+                          <small id="delivery-added-date" class="text-success ml-auto" ></small>
+                          {{/if}}
+
+                        </div>
+
+                        <div class="col-md-3 ml-auto">
+
+                          <img src="/images/product-images/{{this.product.productDetails._id}}__thumbnail.png">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      {{#if this.product.shipped}}
+
+                      {{else}}
+                      <a href="/vendor/ship/?orderId={{this._id}}&userId={{this.userId}}&productOrderId={{this.product.order}}"
+                        class="btn btn-primary text-white">Ship</a>
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+      <!-- //forms 2 -->
+    </section>
+  </div>
+</div>

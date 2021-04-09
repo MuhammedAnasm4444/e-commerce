@@ -7,6 +7,15 @@
  *
  * Date: 2021-02-17T11:53:21.992Z
  */
+ .img-container {
+  /* Never limit the container height here */
+  max-width: 100%;
+}
+
+.img-container img {
+  /* This is important */
+  width: 100%;
+}
 
 .cropper-container {
   direction: ltr;

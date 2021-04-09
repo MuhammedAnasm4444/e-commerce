@@ -1,0 +1,71 @@
+<div class="main-content">
+
+  <!-- content -->
+  <div class="container-fluid content-top-gap">
+
+
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb my-breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sales Report</li>
+      </ol>
+      <div class="ml-auto">
+
+      </div>
+    </nav>
+    <!-- //breadcrumbs -->
+    <!-- forms -->
+    <section class="forms">
+      <!-- forms 2 -->
+      <table border="0" cellspacing="5" cellpadding="5">
+        <tbody>
+          <tr>
+            <td>Start Date:</td>
+            <td><input type="text" id="min" name="min"></td>
+          </tr>
+          <tr>
+            <td>End Date:</td>
+            <td><input type="text" id="max" name="max"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table" id="table2excel">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Order Id</th>
+            <th scope="col">Customer</th>
+            <th scope="col">State</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Sales</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each report}}
+          <tr>
+            <th scope="row">{{incremented @index}}</th>
+            <td>{{moment this.date "YYYY/MM/DD"}}</td>
+            <td>{{this.product.order}}</td>
+            <td>{{this.userDetails.name}}</td>
+            <td>{{this.deliveryDetails.address}}</td>
+            <td>{{this.product.productDetails.product}}</td>
+            <td>{{this.product.quantity}}</td>
+            <td>${{multiply this.product.quantity this.product.productDetails.price}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+
+      </table>
+      <div class="row">
+        <div class="ml-auto">
+          <button class="btn btn-outline-success mt-4" id="excel-button" style="visibility:hidden">Export as Excel</button>
+          <button class="mr-5 btn btn-outline-danger mt-4" id="excel-button" style="visibility:hidden">Export as PDF</button>
+        </div>
+      </div>
+      <!-- //forms 2 -->
+    </section>
+  </div>
+</div>

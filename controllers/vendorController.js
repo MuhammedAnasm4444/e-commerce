@@ -4,13 +4,14 @@ var base64ToImage = require('base64-to-image');
 const jwt = require('jsonwebtoken');
 const maxAge = 3 * 34 * 60 * 60;
 const multer = require('multer');
-
+const moment = require('moment');
+const fs = require('fs');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './public/images/profile-images/')
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname+'.png')
+      cb(null, req.vendor._id+'.png')
     }
   })
    
@@ -24,8 +25,11 @@ const createToken = (id) => {
 
 module.exports = {
     root :(req, res) => {
-        vendorHelpers.getStats(req.vendor._id)
-        res.render('vendor/dashboard')
+        vendorHelpers.getStats(req.vendor._id).then((stats) => {
+            console.log(stats+"00000000000000000000000")
+            res.render('vendor/dashboard', {products:stats.products, customers:stats.customers,sales:stats.sales})
+        })
+        
     },
 
     login_get:(req, res) => {
@@ -123,6 +127,22 @@ module.exports = {
       
         
     },
+    add_offer:(req, res) => {
+        console.log(req.body)
+        vendorHelpers.addOffer(req.body.productId, req.body).then(() => {
+            res.json({status:true})
+            
+        })
+
+    },
+    remove_offer:(req, res) => {
+        console.log(req.query)
+        vendorHelpers.removeOffer(req.query.prodId, req.query.price).then(() => {
+            res.redirect('/vendor/view-product/'+req.query.prodId)
+
+        })
+
+    },
     edit_product_get:(req, res) => {
         vendorHelpers.getProduct(req.params.id).then((product) => {
             console.log(product)
@@ -136,8 +156,9 @@ module.exports = {
         var side = req.body.base64side;
         var rear = req.body.base64rear
         var path ='./public/images/product-images/';
-      
-        console.log(Object.keys(req.body));
+        
+        if(base64Str  && side && rear) {
+            console.log(Object.keys(req.body));
             delete req.body.base64
             delete req.body.base64side
             
@@ -149,13 +170,28 @@ module.exports = {
             var optionalObjThumbnail = {'fileName': id+'__thumbnail', 'type':'png'};
             var optionalObjSide = {'fileName': id+'__side', 'type':'png'};
             var optionalObjRear = {'fileName': id+'__rear', 'type':'png'};
+            if(base64Str === '') console.log('no front')
+            else {
+                base64ToImage(base64Str,path,optionalObjThumbnail); 
+            }
+            if(side === '') console.log("no side")
+            else  base64ToImage(side,path,optionalObjSide); 
+          
+           if(rear === '') console.log('no rear')
+           else base64ToImage(rear,path,optionalObjRear); 
             
-            base64ToImage(base64Str,path,optionalObjThumbnail); 
-            base64ToImage(side,path,optionalObjSide); 
-            base64ToImage(rear,path,optionalObjRear); 
             res.redirect('/vendor/products')
             
         })
+
+        }
+        else {
+            vendorHelpers.editProduct(req.params.id, req.body).then((id) => {
+                res.redirect('/vendor/products')
+            
+            })
+        }
+       
         // vendorHelpers.editProduct(req.params.id, req.body).then((id) => {
         //     // let thumbnail = req.files.image
             
@@ -173,6 +209,9 @@ module.exports = {
     },
     
     delete_product:(req, res) => {
+        fs.unlinkSync('./public/images/product-images/'+req.params.id+'__thumbnail.png')
+        fs.unlinkSync('./public/images/product-images/'+req.params.id+'__side.png')
+        fs.unlinkSync('./public/images/product-images/'+req.params.id+'__rear.png')
         vendorHelpers.removeProduct(req.params.id).then(()=>{
             res.redirect('/vendor/products')
         })
@@ -208,12 +247,41 @@ module.exports = {
 
         vendorHelpers.getOrders(req.vendor._id).then((order) => {
             console.log(order)
-            for(let i = 0; i<order.length;i++) {
-                console.log(order[0].product.productDetails)
-            }
+            // for(let i = 0; i<order.length;i++) {
+            //     console.log(order[5].product.shipped)
+            // }
             res.render('vendor/order', {order})
         })
         
+    },
+    set_delivery_date:(req, res) => {
+        req.body.deliveryDate = new Date(req.body.deliveryDate)
+        vendorHelpers.setDeliveryDate(req.body).then(() => {
+            res.json({status:true})
+        })
+    },
+    ship_product:(req, res) => {
+        console.log(req.query)
+        vendorHelpers.shipProduct(req.query).then(() => {
+            res.redirect('/vendor/orders')
+
+        })
+    },
+    get_sales_report:(req, res) => {
+        var vendorId = req.vendor._id
+        vendorHelpers.getSalesReport(vendorId).then((report) => {
+          console.log(report)
+            res.render('vendor/report', {report:report, moment:moment})
+        })
+        
+    },
+    get_customers:(req, res) => {
+        var vendorId = req.vendor._id
+        vendorHelpers.getCustomers(vendorId).then((customers) => {
+            console.log(customers)
+            res.render('vendor/customers',{customers})
+
+        })
     }
 
     

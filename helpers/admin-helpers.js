@@ -167,12 +167,25 @@ module.exports = {
                         localField:'userId',
                         foreignField:'_id',
                         as:'userDetails'
-
                     }
                 },
                 {
                     $unwind:'$userDetails'
-                }
+                },
+               {
+                  $unwind:'$product' 
+               },
+               {
+                   $lookup:{
+                       from:collection.VENDOR,
+                       localField:'product.vendor',
+                       foreignField:'_id',
+                       as:'product.vendorDetails'
+                   }
+               },
+               {
+                   $unwind:'$product.vendorDetails'
+               }
 
             ]).toArray()
             console.log(orders)

@@ -22,8 +22,9 @@
       <th scope="col">OrderId</th>
       <th scope="col">Customer</th>
       <th scope="col">Total Price</th>
-      <th scope="col">Status</th>
-      <th scope="col">Delvery Details</th>
+      <th scope="col">Vendor</th>
+      <th scope="col">Delivery Details</th>
+      <th scope="col">Options</th>
     </tr>
   </thead>
   <tbody>
@@ -33,8 +34,9 @@
       <td>{{this._id}}</td>
       <td>{{this.userDetails.name}}</td>
       <td>{{this.totalPrice}}</td>
-       <td>{{this.status}}</td>
+       <td>{{this.product.vendorDetails.owner}}</td>
       <td>{{this.deliveryDetails.address}}</td>
+      <td><a href=""><i class="fa fa-arrow-right"></a></i></td>
     </tr>
    {{/each}}
   </tbody>

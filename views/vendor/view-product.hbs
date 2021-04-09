@@ -18,7 +18,7 @@
       <h3>Product Details</h3>
     </div>
     <div class="row">
-      <a href="/vendor/edit-product/{{product._id}}"class="btn btn-info ml-auto mb-2 mr-3">Edit</a>
+      <a href="/vendor/edit-product/{{product._id}}" class="btn btn-info ml-auto mb-2 mr-3">Edit</a>
     </div>
     <!-- //card heading -->
 
@@ -28,16 +28,96 @@
         <div class="row">
           <div class="col-lg-6 align-self pr-lg-4">
             <h3 class="block__title mb-lg-4">{{product.product}}</h3>
-            <h4 class="mb-3">Price: {{product.price}}</h4>
-            <h4 class="mb-lg-5 mb-3">Description: {{product.description}}</h4>
-            <a href="#read" class="btn btn-style btn-primary"> Read More</a>
-          </div>
-          <div class="col-lg-6 pl-lg-4 mt-lg-0 mt-4">
+            {{#ifEquals product.discount 'true'}}
+            <p class=" text-success">Offer is live</p>
+             <h6 class="mb-1">Live Price:</h6> <p>${{product.price}}</p>
+             <h6 class="mb-1">Actual Price:</h6> <p>${{product.actualPrice}}</p>
+             <h6 class="mb-lg-5 mb-3">Description:</h6>
+             <p>{{product.description}}</p>
+              <a class="btn btn-outline-info" href="/vendor/remove-offer/?prodId={{product._id}}&price={{product.actualPrice}}">Remove Offer</a>
+            {{else}}
+                
+             <h6 class="mb-1">Live Price:</h6><p>${{product.price}}</p>
+             <h6 class="mb-1">Actual Price:</h6><p>${{product.actualPrice}}</p>
+           <h4 class=" ">Description:</h4>
+             <p>{{product.description}}</p>
+                       <h4 class=" ">Sub Description:</h4>
+             <p>{{product.description1}}</p>
+              <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModalCenter">
+              Add Offer to this Product
+            </button>
+            {{/ifEquals}}
             
-            <img src="/images/product-images/{{product._id}}__thumbnail.png" alt="" class="img-fluid rounded" />
+            
+
+            <!-- Button trigger modal -->
+            <!-- Button trigger modal -->
+           
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   <form id="offer-form">
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-3 col-form-label-sm">Actual Price</label>
+    <div class="col-sm-9">
+      <input type="number" id="actual-price" class="form-control" id="inputEmail3" value="{{product.actualPrice}}" readonly>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-3 col-form-label-sm">Discount Percentage</label>
+    
+    <div class="col-sm-9">
+      <input type="number" name="discountPercentage" onkeyup= "discount()" id="discount-percentage" min="1" max="80" class="form-control" id="inputPassword3" >
+    </div>
+    
+  </div>
+  <fieldset class="form-group row">
+    <div class="col-sm-3">
+    <label for="inputPassword3" class="col-sm- col-form-label-sm">Discounted Price</label>
+    </div>
+    <div class="col-sm-9">
+      <input type="number" id='discounted-price' class="form-control" id="inputPassword3" readonly>
+      <input id="offer-product-id" value="{{product._id}}" hidden>
+    </div>
+  </fieldset>
+  <div class="form-group row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+   
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+     
+    </div>
+  </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit"  class="btn btn-primary">Save</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pl-lg-4 mt-lg-0 mt-4">
+
+              <img src="/images/product-images/{{product._id}}__thumbnail.png" alt="" class="img-fluid rounded" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- //content block style 1-->
+      <!-- //content block style 1-->
     </div>

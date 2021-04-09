@@ -1,3 +1,5 @@
+
+
 <div class="main-content">
 
     <!-- content -->
@@ -20,7 +22,7 @@
                     <h3>Add Products<span></span></h3>
                 </div>
                 <div class="card-body">
-                    <form action="/vendor/add-product" id="add-product" method="POST" >
+                    <form action="/vendor/add-product" id="add-product" method="POST">
                         <nav aria-label="breadcrumb" class="mb-4 row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label input__label">Category</label>
                             <ol class="breadcrumb my-breadcrumb mt-2 ml-3">
@@ -35,7 +37,7 @@
                                 <input type="text" name="product" class="form-control input-style" id="inputProductName"
                                     placeholder="product name" onchange="checkProduct()">
                             </div>
-                            <p class="text-danger" style="margin-left: 13em;" id="productErr"></p>
+                            <small class="text-danger" style="margin-left: 13em;" id="productErr"></small>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-2 col-form-label input__label">Product
@@ -46,9 +48,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label input__label">Description</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label input__label">Main Description</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="description" style="height: 100px;"
+                                <textarea form="add-product" class="form-control" type="text" name="description" style="height: 100px;"
+                                    aria-label="With textarea"></textarea>
+
+                            </div>
+                        </div>
+                              <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label input__label">Sub Description</label>
+                            <div class="col-sm-10">
+                                <textarea form="add-product" class="form-control" name="description1" style="height: 100px;"
                                     aria-label="With textarea"></textarea>
 
                             </div>
@@ -57,17 +67,16 @@
                             <div class="row">
                                 <legend class="col-form-label col-sm-2 pt-0 input__label">Images</legend>
                                 <div class="">
-                                    <div class=""
-                                        style="height: 100px;  width: 100px;">
-                                        <img id="thumbnail" height="100" width="100" >
+                                    <div class="">
+                                        <img id="thumbnail" height="100" width="100">
                                     </div>
                                     <input type="file" name="thumbnail" alt="" id="inputTb" accept="image/*">
-                                    <input type="text" name="base64" id="base64Image">
-                                    <input type="button" id="btnCrop" value="Crop" />
-                                    <input type="button" id="btnRestore" value="Restore" />
-                                    <div>
-                                        <canvas id="canvas" style="width:10px;height:200px;">
-                                         Your browser does not support the HTML5 canvas element.
+                                    <input type="text" name="base64" id="base64Image" hidden>
+                                    <input type="button" id="btnCrop" value="Crop" style="visibility: hidden;" />
+                                    <input type="button" id="btnRestore" value="Restore" style="visibility: hidden;"  />
+                                    <div style="width: 100px;height:100px; cursor:default">
+                                        <canvas id="canvas" style="">
+                                            Your browser does not support the HTML5 canvas element.
                                         </canvas>
                                     </div>
 
@@ -75,33 +84,31 @@
                                 </div>
                                 <div class="" style="margin-left:11em;">
 
-                                    <div class=""
-                                        style="height: 150px;  width: 150px;">
-                                        <img id="side" height="150" width="150" >
+                                    <div class="" style=" ">
+                                        <img id="side" height="150" width="150">
                                     </div>
                                     <input type="file" name="side" alt="" id="inputSide">
 
-                                    <input type="text" name="base64side" id="base64ImageSide">
-                                    <input type="button" id="btnCropSide" value="Crop" />
-                                    <input type="button" id="btnRestoreSide" value="Restore" />
-                                    <div>
-                                        <canvas id="canvasSide" style="width:100px;height:200px;">
+                                    <input type="text" name="base64side" id="base64ImageSide" hidden>
+                                    <input type="button" id="btnCropSide" value="Crop"style="visibility: hidden;"  />
+                                    <input type="button" id="btnRestoreSide" value="Restore"style="visibility: hidden;"  />
+                                    <div style="width: 100px;height:100px; cursor:default">
+                                        <canvas id="canvasSide" style="">
                                             Your browser does not support the HTML5 canvas element.
                                         </canvas>
                                     </div>
                                 </div>
                                 <div class="" style="margin-left:11em;">
 
-                                    <div class=""
-                                        style="height: 150px;  width: 150px;">
+                                    <div class="" style="">
                                         <img id="rear" height="150" width="150" alt="">
                                     </div>
                                     <input type="file" name="rear" alt="" id="inputRear">
-                                    <input type="text" name="base64rear" id="base64ImageRear">
-                                    <input type="button" id="btnCropRear" value="Crop" />
-                                    <input type="button" id="btnRestoreRear" value="Restore" />
-                                    <div>
-                                        <canvas id="canvasRear" style="width:100px;height:200px;">
+                                    <input type="text" name="base64rear" id="base64ImageRear" hidden>
+                                    <input type="button" id="btnCropRear" value="Crop"style="visibility: hidden;"  />
+                                    <input type="button" id="btnRestoreRear" value="Restore" style="visibility: hidden;" />
+                                    <div style="width: 100px;height:100px; cursor:default">
+                                        <canvas id="canvasRear" >
                                             Your browser does not support the HTML5 canvas element.
                                         </canvas>
                                     </div>

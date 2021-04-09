@@ -6,15 +6,37 @@ const razorpayInstance = require('../config/payment/razorpay');
 const { resolveContent } = require('nodemailer/lib/shared');
 const paypal = require('paypal-rest-sdk') ;
 const { resolve } = require('path');
- 
+var rand = require('random-key');
+require('dotenv').config();
 
 
 module.exports ={
     signup : 
     (data) => {
+
         return new Promise(async(resolve, reject) => {
-            var ifUser = await db.get().collection(collection.USER).findOne({email:data.email})
+           
+            var ifUser = await db.get().collection(collection.USER).findOne({email:data.email});
             if(ifUser) resolve ({emailExist:true})
+            var referalId = rand.generate(4);
+            data.referalLinkId =  referalId;
+            data.referals = 0
+           
+            if(data.referedId) {
+               data.coupons = [{"coupon":"WEL"+rand.generate(3),"couponType":"welcomeCoupon"},{"coupon":'REF'+rand.generate(3),"couponType":"referalCoupon"}]
+                db.get().collection(collection.USER).updateOne({referalLinkId:data.referedId},{
+                   $inc:{
+                       referals:1
+                   },
+                   $push:{
+                       coupons:{coupon:'refered'+rand.generate(4), couponType:'referedCoupon'}
+                   }
+                }) 
+            }
+            else {
+                data.coupons = [{"coupon":"WEL"+rand.generate(3),"couponType":"welcomeCoupon"}]
+
+            }
             data.password =  await bcrypt.hash(data.password, 10)
     
             const user = await db.get().collection('users').insertOne(data)
@@ -39,6 +61,28 @@ module.exports ={
         else {
 
         }
+
+    },
+    changePassword:(data) => {
+        return new Promise(async(resolve, reject) => {
+            data.password =  await bcrypt.hash(data.password, 10)
+            db.get().collection(collection.USER).updateOne({_id:objectId(data.userId)},{
+                $set:{
+                    password:data.password
+                }
+
+            }).then((res) => {
+                console.log(res)
+                resolve()
+            })
+        })
+    },
+    checkEmailExist:(email) => {
+        return new Promise(async(resolve, reject) => {
+           var user = await db.get().collection(collection.USER).findOne({email:email})
+           if(user) resolve(user)
+           else resolve({user:false})
+        })
 
     },
     updateProfile:(id, data) => {
@@ -73,11 +117,15 @@ module.exports ={
     },
     getAddress:(userId) => {
         return new Promise(async(resolve, reject) => {
+            var orders = await db.get().collection(collection.ORDER).findOne({userId:objectId(userId)})
             var address = await db.get().collection(collection.ADDRESS).find({user:objectId(userId)}).toArray()
+            console.log(orders)
             if(address) {
-                resolve(address)
+                if(orders) resolve({address,order:true})
+                resolve({address})
             }
             else{
+                if(orders) resolve({status:true,order:true})
                 resolve({status:true})
             }
             
@@ -99,7 +147,8 @@ module.exports ={
            resolve(address)
         })
     },
-    saveAddress:(data) =>{
+    saveAddress:(id, data) =>{
+        data.user  = id
         return new Promise((resolve, reject) => {
             db.get().collection(collection.ADDRESS).insertOne(data).then(() => {
                 resolve()
@@ -122,13 +171,27 @@ module.exports ={
         })
 
     },
+    getProducts:async(limit, skip) => {
+        limit = parseInt(limit)
+        skip  = parseInt(skip)
+        var products = await db.get().collection(collection.PRODUCT).find({$or:[{status:'unblocked'},{status:{$exists:false}}]}).skip(skip).limit(limit).toArray()
+        return products
+    },
     getAllProducts:()=>{
         return new Promise(async(resolve, reject) => {
+         
            var products = await db.get().collection(collection.PRODUCT).find({$or:[{status:'unblocked'},{status:{$exists:false}}]}).toArray()
            resolve(products)
         })
     },
-    getAllProductsWithCart:(userId)=>{
+    getCount:async() => {
+       var count = await db.get().collection(collection.PRODUCT).countDocuments({$or:[{status:'unblocked'},{status:{$exists:false}}]})
+       
+       return count
+    },
+    getAllProductsWithCart:(userId, skip, limit)=>{
+        limit = parseInt(limit)
+        skip  = parseInt(skip)
         return new Promise(async(resolve, reject) => {
           
            var cart = await db.get().collection(collection.CART).findOne({user:objectId(userId)})
@@ -145,6 +208,7 @@ module.exports ={
 
                    }
                 },
+              
                 {
                     $lookup:{
                        from:collection.CART,
@@ -154,21 +218,31 @@ module.exports ={
                     }
  
                 },
-               
+                {
+                    $project : { _id:1,product:1,price:1,description:1,category:1,vendor:1,status:1,
+                        cart : { $filter : { input : "$cart", as : "cart", cond : { $eq : ["$$cart.user" ,userId] } } }
+                    }
+                }
+                // ,{
+                //     $match:{
+                //         'cart.user':objectId(userId)
+                //     }
+                // }
+               ,
                
                 {
                     $unwind:{path: "$cart", preserveNullAndEmptyArrays: true }
                   
                 }
  
-            ]).toArray()
+            ]).skip(skip).limit(limit).toArray()
             console.log(productsCheck)
             resolve({products:productsCheck, cartCount:cartCount})
 
            }
            else {
             console.log("product Not found in cart")
-               var products = await db.get().collection(collection.PRODUCT).find({$or:[{status:'unblocked'},{status:{$exists:false}}]}).toArray()
+               var products = await db.get().collection(collection.PRODUCT).find({$or:[{status:'unblocked'},{status:{$exists:false}}]}).skip(skip).limit(limit).toArray()
 
                resolve({products:products})
            }
@@ -317,6 +391,32 @@ module.exports ={
         })
       })
     },
+    verifyCoupon:(id, coupon) => {
+        console.log(coupon+"cicicicicicicicicicicicicicici")
+        return new Promise(async(resolve, reject) => {
+            var verifiedCouponWelcome = await db.get().collection(collection.USER).findOne({
+                _id:objectId(id),
+                    coupons:{$elemMatch:{coupon:coupon}}},{coupons:1})
+            var checkCoupon = await db.get().collection(collection.USER).aggregate([
+                {
+                    $match:{coupons:{$elemMatch:{coupon:coupon}}}
+                },
+                {
+                    $unwind:'$coupons'
+                },
+                {
+                    $match:{'coupons.coupon':coupon}
+                }
+            ]).toArray()
+            console.log(checkCoupon)
+            console.log("irjigjrijirijtrritiitijtjiti")
+            if(verifiedCouponWelcome) resolve({status:true,couponType:checkCoupon[0].coupons.couponType})
+            else resolve({verified:false})
+        })
+           
+                
+
+    },
     getTotalAmount:(userId) => {
         return new Promise(async(resolve, reject) => {
            var getTotalAmount = await db.get().collection(collection.CART).aggregate([
@@ -364,22 +464,59 @@ module.exports ={
             resolve(orders)
         })
     },
-    placeOrder:(id, order, products) => {
-        let status=order['paymentMethod']==='COD'?'placed':'pending'
-        var orderObj = {
-           
-            userId:objectId(id),
-            paymentMethod:order['paymentMethod'],
-            product:products,
-            totalPrice:order.totalPrice,
-            date:new Date(),
-            status:status,
-            deliveryDetails:{
-                mobile:order.mobile,
-                address:order.address,
+    placeOrder:async(id, order, products) => {
+        if(order.coupon) {
+           coupon = order.coupon
+         
+            let status=order['paymentMethod']==='COD'?'placed':'pending'
+            
+            var orderObj = {
                
-            },
+                userId:objectId(id),
+                paymentMethod:order['paymentMethod'],
+                product:products,
+                coupon:true,
+                couponType:order.coupon,
+                couponValue:order.couponValue,
+                totalPrice:order.totalPrice,
+                date:new Date(),
+                status:status,
+                deliveryDetails:{
+                    mobile:order.mobile,
+                    address:order.address,
+                   
+                },
+
+            }
+            if(order['paymentMethod'] === 'COD') {
+                console.log(order)
+                console.log("deleting coupon value of this order")
+                db.get().collection(collection.USER).updateOne({_id:objectId(id)},{
+                    $pull: { coupons: { 'coupon': order.couponValue } } 
+                   })
+            }
+
         }
+        else {
+            
+            let status=order['paymentMethod']==='COD'?'placed':'pending'
+            var orderObj = {
+               
+                userId:objectId(id),
+                paymentMethod:order['paymentMethod'],
+                product:products,
+                totalPrice:order.totalPrice,
+                date:new Date(),
+                status:status,
+                deliveryDetails:{
+                    mobile:order.mobile,
+                    address:order.address,
+                   
+                },
+            }
+
+        }
+       
         return new Promise((resolve, reject) => {
      db.get().collection(collection.ORDER).insertOne(orderObj).then((orderDetails) => {
          db.get().collection(collection.CART).update({user:objectId(order.userId)},{
@@ -434,7 +571,7 @@ module.exports ={
         console.log('orderId:  '+data['payment[razorpay_order_id]'])
         console.log('payment_id:  '+data['payment[razorpay_payment_id]'])
         const crypto = require('crypto');
-        var hmac = crypto.createHmac('sha256', '4UnVTZxcUo38AUd2oq5Psadw')
+        var hmac = crypto.createHmac('sha256', process.env.RAZORPAY_CLIENT_SECRET)
         hmac.update(data['payment[razorpay_order_id]']+'|'+data['payment[razorpay_payment_id]']);
         hmac = hmac.digest('hex')
       
@@ -449,19 +586,47 @@ module.exports ={
        })
    },
 
-   changePaymentStatus:(orderId) => {
+   changePaymentStatus:(id,orderId) => {
        return new Promise((resolve, reject) => {
-           db.get().collection(collection.ORDER).updateOne({_id:objectId(orderId)},{
+           db.get().collection(collection.ORDER).findOneAndUpdate({_id:objectId(orderId)},{
                $set:{
                    status:"paid"
                }
-           }).then((res) => {
-              
-            resolve()
+           }).then((order) => {
+               console.log("644444444444444444444444444444444444444444444444444444444444")
+               console.log(order)
+               let value = order.value
+
+               if(value != null && value.coupon) {
+                   console.log('deleting coupon that used >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+                db.get().collection(collection.USER).updateOne({_id:objectId(id)},{
+                    $pull: { coupons: { 'couponType': value.couponType} } 
+                   }).then(() => {
+                    resolve()
+                   })
+                   
+               }
+               else {
+                   resolve()
+               }
+           
+            
            })
           
        } )
    },
+   changeFailedPaymentStatus:(orderId) => {
+       return new Promise((resolve, reject) => {
+        db.get().collection(collection.ORDER).updateOne({_id:objectId(orderId)},{
+            $set:{
+                status:"failed Payment"
+            }
+        }).then((res) => {
+           
+         resolve()
+        })
+       })
+   }
 //   
 }
 

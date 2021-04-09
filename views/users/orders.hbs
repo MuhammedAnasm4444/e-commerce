@@ -1,24 +1,45 @@
 <div class="container">
-    {{#each orders}}
-    <div class="card mb-2" >
-  <div class="card-header">
-    Order:{{incremented @index}} 
-    
-  </div>
-  <div class="ml-auto">
-Total Price: $<span style="font-weight: bolder;">{{this.totalPrice}}</span>
+  {{#each orders}}
+  <div class="card mb-2">
+    <div class="card-header row">
+      <div>
+      Order:{{incremented @index}}
+      </div>
+      <div class="ml-auto">
+       Order Status:<strong class="text-success">{{this.status}}</strong>
+      </div>
     </div>
-  {{#each product}}
-  <div class="card-body">
-    
-    <h5 class="card-title">{{this.productDetails.product}}</h5>
-    <div>
-        <img src="/images/product-images/{{this.product}}__thumbnail.png" height="70" width="70">
+    <div class="ml-auto">
+      Total Price: $<span style="font-weight: bolder;">{{this.totalPrice}}</span>
     </div>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <hr>
+  
+    {{#each product}}
+    <div class="card-body">
+  <h6 class="card-title">{{this.productDetails.product}}</h5>
+  <div class="row">
+      <div>
+        <img src="/images/product-images/{{this.product}}__thumbnail.png" height="90" width="90">
+      </div>
+      <div>
+      <span class="card-text"><strong>Quantity</strong>:<small>{{this.quantity}}</small></span>
+      </div>
+        {{#ifEquals this.status 'shipped'}}
+        <div class="ml-auto">
+<p>Product will has shipped and will arrive on {{moment this.deliveryDate 'DD-MM-YYYY'}}</p>
+        </div>
+    {{else}}
+    <div class="ml-auto">
+      <p>Product will ship Immediately</p>
+    </div>
+    {{/ifEquals}}
+      </div>
+      <hr>
+    </div>
+    {{/each}}
   </div>
   {{/each}}
 </div>
-{{/each}}
-</div>
+
+<script src="/scripts/scripts/jquery-2.2.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="/scripts/scripts/bootstrap.js"></script>

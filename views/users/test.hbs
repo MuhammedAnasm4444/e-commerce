@@ -1,0 +1,797 @@
+	<!--jQuery-->
+	{{!-- <script src="/scripts/scripts/jquery-2.2.3.min.js"></script>
+	<script>
+		let searchBox = document.querySelector(".searchBox");
+		let filterSearch, ulItem, liItem, links;
+		function processResults() {
+			input = document.getElementById("searchProducts");
+			filterSearch = searchBox.value.toUpperCase();
+			ulItem = document.querySelector("#products");
+			liItem = ulItem.getElementsByClassName("product-men");
+
+
+			Array.from(liItem).forEach(element => {
+				links = element.getElementsByTagName("a")[0];
+
+				console.log(links.innerHTML)
+				if (links.innerHTML.toUpperCase().indexOf(filterSearch) > -1) {
+					element.style.display = "";
+				} else {
+					element.style.display = "none";
+				}
+			});
+		}
+		searchBox.addEventListener("keyup", () => {
+			processResults();
+		});
+
+	</script>
+	<!-- newsletter modal -->
+
+	<!-- Modal -->
+
+
+	<!-- Modal -->
+
+	<script>
+		$(document).ready(function () {
+			$("#myModal").modal();
+		});
+	</script>
+	<!-- // modal -->
+
+	<!--search jQuery-->
+	<script src="/scripts/scripts/modernizr-2.6.2.min.js"></script>
+	<script src="/scripts/scripts/classie-search.js"></script>
+	<script src="/scripts/scripts/demo1-search.js"></script>
+	<!--//search jQuery-->
+	<!-- cart-js -->
+	<script src="/scripts/scripts/minicart.js"></script>
+	<script>
+		googles.render();
+
+		googles.cart.on('googles_checkout', function (evt) {
+			var items, len, i;
+
+			if (this.subtotal() > 0) {
+				items = this.items();
+
+				for (i = 0, len = items.length; i < len; i++) { }
+			}
+		});
+	</script>
+
+	<!-- //cart-js -->
+	<script>
+		$(document).ready(function () {
+			$(".button-log a").click(function () {
+				$(".overlay-login").fadeToggle(200);
+				$(this).toggleClass('btn-open').toggleClass('btn-close');
+			});
+		});
+		$('.overlay-close1').on('click', function () {
+			$(".overlay-login").fadeToggle(200);
+			$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
+			open = false;
+		});
+	</script>
+	<!-- carousel -->
+	<!-- Count-down -->
+	{{!--
+	<script src="/scripts/scripts/simplyCountdown.js"></script> --}}
+	<link href="/styles/styles/simplyCountdown.css" rel='stylesheet' type='text/css' />
+	<script>
+		var d = new Date();
+		simplyCountdown('simply-countdown-custom', {
+			year: d.getFullYear(),
+			month: d.getMonth() + 2,
+			day: 25
+		});
+	</script>
+	<script src="/scripts/scripts/jquery-ui.js"></script>
+
+	<script>
+		//<![CDATA[ 
+		$(window).load(function () {
+			$("#slider-range").slider({
+				range: true,
+				min: 0,
+				max: 9000,
+				values: [50, 6000],
+				slide: function (event, ui) {
+					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+				}
+			});
+			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+		}); //]]>
+	</script>
+	<!--// Count-down -->
+	<script src="/scripts/scripts/owl.carousel.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.owl-carousel').owlCarousel({
+				loop: true,
+				margin: 10,
+				responsiveClass: true,
+				responsive: {
+					0: {
+						items: 1,
+						nav: true
+					},
+					600: {
+						items: 2,
+						nav: false
+					},
+					900: {
+						items: 3,
+						nav: false
+					},
+					1000: {
+						items: 4,
+						nav: true,
+						loop: false,
+						margin: 20
+					}
+				}
+			})
+		})
+	</script>
+
+	<!-- //end-smooth-scrolling -->
+	<script src="/scripts/scripts/imagezoom.js"></script>
+	<script src="/scripts/scripts/easy-responsive-tabs.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#horizontalTab').easyResponsiveTabs({
+				type: 'default', //Types: default, vertical, accordion           
+				width: 'auto', //auto or any width like 600px
+				fit: true, // 100% fit in a container
+				closed: 'accordion', // Start closed if in accordion view
+				activate: function (event) { // Callback function if tab is switched
+					var $tab = $(this);
+					var $info = $('#tabInfo');
+					var $name = $('span', $info);
+					$name.text($tab.text());
+					$info.show();
+				}
+			});
+			$('#verticalTab').easyResponsiveTabs({
+				type: 'vertical',
+				width: 'auto',
+				fit: true
+			});
+		});
+	</script>
+	<!-- FlexSlider -->
+	<script src="/scripts/scripts/jquery.flexslider.js"></script>
+	<script>
+		// Can also be used with $(document).ready()
+		$(window).load(function () {
+			$('.flexslider1').flexslider({
+				animation: "slide",
+				controlNav: "thumbnails"
+			});
+		});
+	</script>
+	<!-- //FlexSlider-->
+
+
+	<!-- dropdown nav -->
+	<script>
+		$(document).ready(function () {
+			$(".dropdown").hover(
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
+					$(this).toggleClass('open');
+				},
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
+					$(this).toggleClass('open');
+				}
+			);
+		});
+	</script>
+	<!-- //dropdown nav -->
+	<script src="/scripts/scripts/move-top.js"></script>
+	<script src="/scripts/scripts/easing.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 900);
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			/*
+									var defaults = {
+										  containerID: 'toTop', // fading element id
+										containerHoverID: 'toTopHover', // fading element hover id
+										scrollSpeed: 1200,
+										easingType: 'linear' 
+									 };
+									*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<!--// end-smoth-scrolling -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+	<script src="/scripts/scripts/bootstrap.js"></script>
+	<script src="https://apis.google.com/js/platform.js "></script>
+	<!-- js file -->
+	<script>
+		$('#coupon-verify').validate({
+			rules: {
+				coupon: true
+			},
+			submitHandler: (form, e) => {
+				$.ajax({
+					url: '/coupon-verify',
+					method: 'POST',
+					data: $('#coupon-verify').serialize(),
+					success: (res) => {
+						console.log(res)
+						if (res.status) {
+							if (res.couponType === 'welcomeCoupon') {
+								$('#coupon-verify').css('visibility', 'hidden')
+								var totalPrice = document.getElementById('coupen-total-price').innerHTML
+								document.getElementById('coupen-total-price').innerHTML = Math.round((totalPrice) - (totalPrice * (20 / 100)))
+								document.getElementById('coupen-box').style.visibility = 'visible'
+								document.getElementById('discount-percentage').innerHTML = 20
+								document.getElementById('coupon-type-small').innerHTML = 'welcome coupon'
+								document.getElementById('final-price').value = document.getElementById('coupen-total-price').innerHTML
+								var couponCode = document.getElementById('coupon-code').value
+
+								console.log(couponCode + "/////////////////////")
+								$('#selected-coupon').attr('name', 'coupon')
+								$('#selected-coupon-value').attr('name', 'couponValue')
+								$('#selected-coupon').val(res.couponType)
+								$('#selected-coupon-value').val(couponCode)
+
+
+							}
+							else if (res.couponType === "referalCoupon") {
+								var totalPrice = document.getElementById('coupen-total-price').innerHTML
+								document.getElementById('coupen-total-price').innerHTML = Math.round((totalPrice) - (totalPrice * (15 / 100)))
+								document.getElementById('coupen-box').style.visibility = 'visible'
+								document.getElementById('coupon-type-small').innerHTML = 'referal coupon'
+								document.getElementById('discount-percentage').innerHTML = 10
+								document.getElementById('final-price').value = document.getElementById('coupen-total-price').innerHTML
+								var couponCode = document.getElementById('coupon-code').value
+
+								console.log(couponCode + "/////////////////////")
+								$('#selected-coupon').attr('name', 'coupon')
+								$('#selected-coupon-value').attr('name', 'couponValue')
+								$('#selected-coupon').val(res.couponType)
+								$('#selected-coupon-value').val(couponCode)
+								$('#coupon-verify').css('visibility', 'hidden')
+
+							}
+							else if (res.couponType === "referedCoupon") {
+								var totalPrice = document.getElementById('coupen-total-price').innerHTML
+								document.getElementById('coupen-total-price').innerHTML = Math.round((totalPrice) - (totalPrice * (15 / 100)))
+								document.getElementById('coupen-box').style.visibility = 'visible'
+								document.getElementById('coupon-type-small').innerHTML = 'refered coupon'
+								document.getElementById('discount-percentage').innerHTML = 10
+								document.getElementById('final-price').value = document.getElementById('coupen-total-price').innerHTML
+								var couponCode = document.getElementById('coupon-code').value
+
+								console.log(couponCode + "/////////////////////")
+								$('#selected-coupon').attr('name', 'coupon')
+								$('#selected-coupon-value').attr('name', 'couponValue')
+								$('#selected-coupon').val(res.couponType)
+								$('#selected-coupon-value').val(couponCode)
+								$('#coupon-verify').css('visibility', 'hidden')
+
+							}
+
+
+
+
+						}
+						else {
+							alert('wrong coupon')
+						}
+
+					}
+				})
+			}
+
+		})
+	</script>
+	<script>
+		function checkPhone() {
+
+			var phone = document.getElementById('phonenum').value
+			var error = false
+			console.log(phone)
+			$.ajax({
+				url: "/check",
+				data: { phone: phone },
+				method: 'POST',
+				success: (response) => {
+					if (response.status) {
+						document.getElementById('otp-div').style.visibility = "visible"
+						document.getElementById('phonenum').style.visibility = "hidden"
+						error = false
+					}
+					else {
+						document.getElementById('err').innerHTML = "In valid error"
+						error = true
+
+
+					}
+				}
+			})
+		}
+		$("#login-form").validate({
+			rules: {
+
+
+				password: {
+					required: true,
+
+				}
+			}
+
+
+
+		});
+
+		$("#signup-form11").validate({
+			rules: {
+
+				name: {
+					required: true
+				},
+				email: {
+					required: true,
+					email: true
+
+				},
+				phone: {
+					required: true,
+					minlength: 10,
+					maxlength: 10
+				},
+				password: {
+					required: true,
+
+				}
+
+			},
+			submitHandler: (form, e) => {
+				console.log("signup checking")
+				e.preventDefault();
+				$.ajax({
+					url: "/signup",
+					data: $('#signup-form11').serialize(),
+					method: "POST",
+					success: function (response) {
+						console.log(response)
+						if (response.emailExist) {
+							document.getElementById('existError').innerHTML = "Email already Exist"
+						} else {
+							document.getElementById('otp-form').style.visibility = 'visible'
+							document.getElementById("signup-form11").style.visibility = 'hidden'
+							document.getElementById('otp-phone').value = response.phone
+							window.location.href = '/'
+
+						}
+					},
+					error: function (err) {
+						console.log(err)
+						alert("Something Error :")
+
+					}
+				})
+			}
+
+
+		});
+
+		function addToCart(e, id) {
+			e.preventDefault();
+			console.log("hellll")
+			console.log(id)
+
+			$.ajax({
+				url: '/add-to-cart',
+				method: "post",
+				data: { productId: id },
+				success: (response) => {
+					if (!response.user) {
+						window.location.href = '/login'
+					}
+
+					else {
+						var num = document.getElementById('cartCount').innerHTML
+						document.getElementById('cartCount').innerHTML = parseInt(num) + 1
+						document.getElementById('cart-Button' + id).innerHTML = ""
+						document.getElementById('cart-Button' + id).style.visibility = 'hidden'
+						document.getElementById('cart-added-to-cart' + id).innerHTML = 'Product Added to Cart'
+						console.log("added")
+
+					}
+
+				}
+
+			})
+
+			return false; // for good measure
+
+
+		}
+		function changeQuantity(productId, productPrice, num) {
+			console.log(productId, num, productPrice)
+			var currentQuantity = parseInt(document.getElementById(productId).innerHTML)
+			num = parseInt(num)
+			$.ajax({
+				url: '/change-product-quantity',
+				data: { productId: productId, quantity: num, currentQuantity: currentQuantity },
+				method: 'post',
+				success: (response) => {
+					if (response.status) {
+						console.log('worked')
+
+						document.getElementById(productId).innerHTML = num + currentQuantity
+						document.getElementById('total-price').innerHTML = parseInt(document.getElementById('total-price').innerHTML) + (parseInt(productPrice) * num)
+						document.getElementById('eachTotal' + productId).innerHTML = parseInt(document.getElementById('product-specific' + productId).innerHTML) * parseInt(document.getElementById(productId).innerHTML)
+
+					}
+					else if (response.removeProduct) {
+						alert('product Removed from the cart')
+						location.reload()
+					}
+
+				}
+			})
+
+		}
+		function removeProduct(productId) {
+			$.ajax({
+				url: '/remove-cart-product',
+				data: { productId: productId },
+				method: 'post',
+				success: (response) => {
+					if (response.removeProduct) {
+						alert('product Removed from the cart')
+						location.reload()
+					}
+
+				}
+			})
+		}
+
+	</script>
+
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script
+		src="https://www.paypal.com/sdk/js?client-id=AW57sRTh1bcdLwTfnEOWm0shusbLTMmRRrke3n_xRGgIUglC0WO7rzrH6dDbj24ivxBqLEyEAVUyCo-P"
+		data-namespace="paypal_sdk"></script>
+	<script>
+		$('#change-password').validate({
+			rules: {
+				password1: {
+					required: true,
+					minlength: 4,
+					maxlength: 10,
+				},
+				password2: {
+					required: true,
+					minlength: 4,
+					maxlength: 10,
+					equalTo: "#password1"
+				}
+
+			}
+		})
+	</script>
+	<script>
+		$('#forgot-password').validate({
+			rules: {
+				email: {
+					required: true
+				}
+			},
+			submitHandler: (form, e) => {
+				e.preventDefault()
+				$.ajax({
+					url: '/forgot-password',
+					method: 'post',
+					data: $('#forgot-password').serialize(),
+					success: (res) => {
+						if (res.status) {
+							document.getElementById('forgot-password').style.visibility = 'hidden'
+							document.getElementById('forgot-link').style.visibility = 'visible'
+							document.getElementById('no-account').style.visibility = 'hidden'
+
+						}
+						else {
+							document.getElementById('no-account').style.visibility = 'visible'
+						}
+
+
+					}
+				})
+			}
+		})
+	</script>
+	<script>
+		function selectAddress(e, id) {
+			e.preventDefault()
+			console.log(id)
+			var place = document.getElementById(id + 'place').innerHTML
+			var city = document.getElementById(id + 'city').innerHTML
+			var state = document.getElementById(id + 'state').innerHTML
+			var pincode = document.getElementById(id + 'pincode').innerHTML
+			console.log(place, city, state, pincode)
+			document.getElementById('address').value = place
+			document.getElementById('city').value = city
+			document.getElementById('state').value = state
+			document.getElementById('pincode').value = pincode
+		}
+		console.log($("#credit").prop("checked"))
+		function MyFunction() {
+			console.log('hellllllllllllllllllllllllllllllllllllllllllllllll')
+
+			if ($("#credit").prop("checked")) {
+				console.log("hello")
+				document.getElementById("checkout-submit").style.visibility = "visible"
+				document.getElementById("checkout-submit").innerHTML = "continue with Cash On Delivery"
+
+				// do something
+			}
+			else if ($("#paypal").prop("checked")) {
+				console.log("hello")
+				// do something
+				document.getElementById("checkout-submit").style.visibility = "visible";
+				console.log(document.getElementById("checkout-submit").innerHTML)
+				document.getElementById("checkout-submit").innerHTML = "continue with Paypal"
+			}
+			else if (document.getElementById("razorpay").checked) {
+				// do something
+				console.log("hello")
+				document.getElementById("checkout-submit").style.visibility = "visible";
+				document.getElementById("checkout-submit").innerHTML = "continue with Razorpay"
+			}
+		}
+		$('#place-order').validate({
+			rules: {
+
+				email: {
+					required: true,
+					email: true,
+				},
+				mobile: {
+					required: true,
+					maxlength: 10,
+					minlength: 10
+				}
+
+
+
+			},
+			submitHandler: (form, e) => {
+				e.preventDefault();
+				$.ajax({
+					url: '/place-order',
+					data: $('#place-order').serialize(),
+					method: 'POST',
+					success: (response) => {
+						console.log(response)
+						if (response.cod) {
+							if ($("#save-info").prop("checked")) {
+								console.log("hello")
+								$.ajax({
+									url: '/save-address',
+									data: {
+
+										place: document.getElementById('address').value,
+										city: document.getElementById('city').value,
+										state: document.getElementById('state').value,
+										pincode: document.getElementById('pincode').value
+									},
+									method: 'POST',
+									success: (response) => {
+										console.log(response)
+									}
+								})
+							}
+
+							console.log("cod paid")
+							location.href = '/success/' + response.orderId
+
+						}
+						else if (response.paypal) {
+							if ($("#save-info").prop("checked")) {
+								console.log("hello")
+								$.ajax({
+									url: '/save-address',
+									data: {
+
+										place: document.getElementById('address').value,
+										city: document.getElementById('city').value,
+										state: document.getElementById('state').value,
+										pincode: document.getElementById('pincode').value
+									},
+									method: 'POST',
+									success: (response) => {
+										console.log(response)
+									}
+								})
+							}
+							document.getElementById('checkout-submit').style.visibility = "hidden";
+							document.getElementById('paypal-continue').style.visibility = "visible";
+							var order = response.orderdetails
+							paypal_sdk.Buttons({
+
+								createOrder: function (data, actions) {
+									console.log(data)
+									console.log(actions)
+									console.log(order)
+									// This function sets up the details of the transaction, including the amount and line item details.
+									return actions.order.create({
+										purchase_units: [{
+											amount: {
+												value: order.totalPrice
+											}
+										}]
+									});
+								},
+								onApprove: function (data, actions) {
+									// This function captures the funds from the transaction.
+									return actions.order.capture().then(function (details) {
+										console.log(details)
+										// This function shows a transaction success message to your buyer.
+										location.href = '/success/' + order._id
+
+									});
+								},
+								onCancel: function (data) {
+									// Show a cancel page, or return to cart
+									console.log(data)
+									window.location.href = '/failed' + order._id
+
+
+								},
+								onError: function (err) {
+									alert("Payment Please Try Again")
+									// For example, redirect to a specific error page
+									window.location.href = "/failed" + order_id;
+								}
+							}).render('#paypal-payment-button');
+						}
+						else if (response.razorpay) {
+							if ($("#save-info").prop("checked")) {
+								console.log("hello")
+								$.ajax({
+									url: '/save-address',
+									data: {
+
+										place: document.getElementById('address').value,
+										city: document.getElementById('city').value,
+										state: document.getElementById('state').value,
+										pincode: document.getElementById('pincode').value
+									},
+									method: 'POST',
+									success: (response) => {
+										console.log(response)
+									}
+								})
+							}
+							console.log(response.order)
+
+
+							if (document.getElementById('checkout-submit').style.visibility === "hidden") {
+								document.getElementById('checkout-submit').style.visibility = "visible"
+							}
+
+							var order = response.order
+							var amount = order.amount
+							console.log(order.amount + "order amount is ---------------------------------------")
+							var options = {
+								"key": "rzp_test_HvTWeRWYRE4mtd", // Enter the Key ID generated from the Dashboard
+								"amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+								"currency": "INR",
+								"name": "MyCart",
+								"description": "Test Transaction",
+								"image": "https://example.com/your_logo",
+								"order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+								"handler": function (response) {
+									alert('payment Successful')
+									verifyPayment(response, order)
+								},
+								"prefill": {
+									"name": "MyCart",
+									"email": "MyCart@example.com",
+									"contact": "9999999999"
+								},
+								"notes": {
+									"address": "Razorpay Corporate Office"
+								},
+								"theme": {
+									"color": "#3399cc"
+								}
+							};
+							var rzp1 = new Razorpay(options);
+							rzp1.on('payment.failed', function (response) {
+								paymentFailed()
+							});
+							rzp1.open();
+							function paymenFailed(payment, order) {
+								window.location.href = '/failed' + order._id
+							}
+							function verifyPayment(payment, order) {
+								$.ajax({
+									url: '/verify-payment',
+									data: {
+										payment, order
+									},
+									method: 'post',
+									success: (response) => {
+										if (response.payment) {
+											console.log('payment Succesful')
+											location.href = '/success'
+										}
+										else {
+											location.href = '/failed'
+										}
+
+									}
+								})
+							}
+
+						}
+
+					}
+
+
+				})
+
+			}
+		})
+	</script>
+	<script>
+
+		function editProfile() {
+			$('#profile-form :input').css({ "border": "aliceblue", "border-style": "outset" });
+			$('#profile-form :input').prop('readonly', false);
+			$('#profile-save').css("visibility", "visible");
+
+
+		}
+		$('#profile-form').validate({
+			rules: {
+
+				name: {
+					required: true,
+
+				},
+				email: {
+					required: true,
+					email: true
+
+				},
+				phone: {
+					required: true,
+					number: true,
+					maxlength: 10
+
+				}
+
+			},
+
+
+		})
+	</script> --}}
+
+  

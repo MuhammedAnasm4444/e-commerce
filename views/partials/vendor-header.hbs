@@ -24,7 +24,7 @@
 
       <!-- sidebar nav start -->
       <ul class="nav nav-pills nav-stacked custom-nav">
-        <li class="active"><a href="/vendor/dashboard"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
+        <li class="active"><a href="/vendor"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
         </li>
         <li class="menu-list">
           <a href="#"><i class="fa fa-list-alt"></i>
@@ -36,8 +36,8 @@
           </ul>
         </li>
         <li><a href="/vendor/products"><i class="fa fa-table"></i> <span>products</span></a></li>
-        <li><a href="blocks.html"><i class="fa fa-th"></i> <span>Sales Report</span></a></li>
-        <li><a href="forms.html"><i class="fa fa-users" aria-hidden="true"></i><span>Customer</span></a></li>
+        <li><a href="/vendor/sales-report"><i class="fa fa-th"></i> <span>Sales Report</span></a></li>
+        <li><a href="/vendor/customers"><i class="fa fa-users" aria-hidden="true"></i><span>Customer</span></a></li>
       </ul>
       <!-- //sidebar nav end -->
       <!-- toggle button start -->
@@ -56,10 +56,10 @@
     <div class="menu-right">
       <div class="navbar user-panel-top">
         <div class="search-box">
-          <form action="#search-results.html" method="get">
+          {{!-- <form action="#search-results.html" method="get">
             <input class="search-input" placeholder="Search Here..." type="search" id="search">
             <button class="search-submit" value=""><span class="fa fa-search"></span></button>
-          </form>
+          </form> --}}
         </div>
         <div class="user-dropdown-details d-flex">
           <div class="profile_details_left">
@@ -153,7 +153,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
                   aria-expanded="false">
                   <div class="profile_img">
-                    <img src="/images/profile-images/profile-vendor.png" class="rounded-circle" alt="" />
+                    <img src="/images/profile-images/{{vendor._id}}.png" class="rounded-circle" alt="" />
                     <div class="user-active">
                       <span></span>
                     </div>

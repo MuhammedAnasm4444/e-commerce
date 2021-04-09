@@ -1,0 +1,113 @@
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+	<div id="login">
+        <h3 class="text-center text-white pt-5" style="color: darkslategray;">Login form{{referedId}}</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                     
+                        <form id="signup-form11" class="form" action="/signup" method="post">
+                            <h3 class="text-center " style="color: darkslategray;">Signup</h3>
+                            <div class="form-group">
+                                <label for="username" class=""style="color: darkslategray;">Name:</label><br>
+                                <input type="text" name="name" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                               <p id="existError" class="text-danger"></p>
+                                <label for="username" class=""style="color: darkslategray;">Email:</label><br>
+                                <input type="text" name="email" id="useremail" class="form-control">
+                            </div>
+                            <div class="form-group">
+                               <p id="existError" class="text-danger"></p>
+                                <label for="username" class=""style="color: darkslategray;">Phone</label><br>
+                                <input type="number" name="phone" id="userphone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="referedId" value="{{referedId}}" hidden>
+                                <label for="password" style="color: darkslategray;" class="">Password:</label><br>
+                                <input  type="password" name="password" id="password" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"></label><br>
+                                <button type="submit" class="btn btn-dark btn-md" value="submit">Sumbit</button>
+                            </div>
+                        
+                            <div id="register-link" class="text-right mb-3">
+                                <a href="/login"><span>Have an account ? Login.</span></a>
+                                <a href="/google"><i class="fa fa-google" aria-hidden="true"></i></a> 
+                            </div>
+                        </form>
+                         <form id="otp-form" action="/signup" method="POST" style="visibility: hidden;">
+                                <div id="otp-signup-div" class="form-group" >
+                                <input id="otp-phone" name="phone"hidden>
+                                <label for="password" style="color: darkslategray;" class="">Otp:</label><br>
+                                <input  type="password" name="password" id="password" class="form-control">
+                                <button type="submit" class="btn btn-dark btn-md" value="submit">Sumbit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</section>
+	
+<script src="/scripts/scripts/jquery-2.2.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="/scripts/scripts/bootstrap.js"></script>
+<script>
+    	$("#signup-form11").validate({
+			rules: {
+
+				name: {
+					required: true
+				},
+				email: {
+					required: true,
+					email: true
+
+				},
+				phone: {
+					required: true,
+					minlength: 10,
+					maxlength: 10
+				},
+				password: {
+					required: true,
+
+				}
+
+			},
+			submitHandler: (form, e) => {
+				console.log("signup checking")
+				e.preventDefault();
+				$.ajax({
+					url: "/signup",
+					data: $('#signup-form11').serialize(),
+					method: "POST",
+					success: function (response) {
+						console.log(response)
+						if (response.emailExist) {
+							document.getElementById('existError').innerHTML = "Email already Exist"
+						} else {
+							document.getElementById('otp-form').style.visibility = 'visible'
+							document.getElementById("signup-form11").style.visibility = 'hidden'
+							document.getElementById('otp-phone').value = response.phone
+							window.location.href = '/'
+
+						}
+					},
+					error: function (err) {
+						console.log(err)
+						alert("Something Error :")
+
+					}
+				})
+			}
+
+
+		});
+
+	
+</script>

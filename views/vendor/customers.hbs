@@ -1,0 +1,47 @@
+<div class="main-content">
+
+    <!-- content -->
+    <div class="container-fluid content-top-gap">
+
+
+        <!-- breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Customers</li>
+            </ol>
+        </nav>
+        <!-- //breadcrumbs -->
+        <!-- forms -->
+<section class="forms">
+<!-- forms 2 -->
+          <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      
+      <th scope="col">Options</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+      {{#each customers}}
+    <tr>
+      <th scope="row">{{incremented @index}}</th>
+      <td>{{this.userDetails.name}}</td>
+      <td>{{this.userDetails.email}}</td>
+      <td>{{this.userDetails.phone}}</td>
+      <td><a href="/vendor/report-user"> <i class="fa fa-arrow-right"></i></a>
+     </td>
+
+    </tr>
+   {{/each}}
+  </tbody>
+</table>
+            <!-- //forms 2 -->
+            </section>
+            </div>
+            </div>

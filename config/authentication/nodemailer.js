@@ -4,13 +4,13 @@ function sendEmail(email, message){
     var transporter = nodemailer.createTransport({
       service:'gmail',
       auth:{
-        user:'anchukhan9@gmail.com',
-        pass:'ummauppa'
+        user:process.env.EMAIL,
+        pass:process.env.PASSWORD
       }
     });
     
     var mailOptions = {
-      from :'anchukhan9@gmail.com',
+      from :process.env.EMAIL,
       to:email,
       subject:'Vendorship Approval',
       text:message

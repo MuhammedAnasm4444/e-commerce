@@ -1,68 +1,108 @@
-   <div id="login">
-        <h3 class="text-center text-white pt-5" style="color: darkslategray;">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="/login" method="post" >
-                        {{#if locals.message}}
-                        <p>no user</p>
+{{! OTP lOGIN }}
+{{!-- <div id="login">
+
+    <h3 class="text-center text-white pt-5" style="color: darkslategray;">Login form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="/login" method="post">
+                        {{#if message}}
+                        <p>Incorrect Otp</p>
                         {{/if}}
-                        
-                            <h3 class="text-center " style="color: darkslategray;">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class=""style="color: darkslategray;">Phone:</label><br>
-                                <input type="text" name="phone" id="phonenum" onchange="checkPhone()" class="form-control">
-                            </div>
-                            <div id="otp-div" class="form-group" style="visibility:hidden">
-                                <label for="password" style="color: darkslategray;" class="">Otp:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"></label><br>
-                                <input type="submit"  class="btn btn-dark btn-md" >
-                            </div>
-                            <div id="register-link" class="text-right mb-3">
-                                <a href="/signup"><span>Don't have account ? Signup.</span></a>
-                            </div>
-                        </form>
-                    </div>
+
+                        <h3 class="text-center " style="color: darkslategray;">Login</h3>
+                        <div class="form-group">
+                            <label for="username" class="" style="color: darkslategray;">Phone:</label><br>
+                            <input type="text" name="phone" id="phonenum" onchange="checkPhone()" class="form-control">
+                        </div>
+                        <div id="otp-div" class="form-group" style="visibility:hidden">
+                            <label for="password" style="color: darkslategray;" class="">Otp:</label><br>
+                            <input type="text" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="remember-me" class="text-info"></label><br>
+                            <input type="submit" class="btn btn-dark btn-md">
+                        </div>
+                        <div id="register-link" class="text-right mb-3">
+                            <a href="/signup"><span>Don't have account ? Signup.</span></a>
+                            <a href="/google"><i class="fa fa-google" aria-hidden="true"></i></a>
+                            <a href="/linkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div> --}}
+{{!------------------------------OTP lOGIN ----------- --}}
 
 
-       {{!-- <div id="login">
-        <h3 class="text-center text-white pt-5" style="color: darkslategray;">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="/login" method="post" >
+<div id="login">
+    <h3 class="text-center text-white pt-5" style="color: darkslategray;">Login form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="/login" method="post">
                         {{#if locals.message}}
                         <p>no user</p>
                         {{/if}}
-                        
-                            <h3 class="text-center " style="color: darkslategray;">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class=""style="color: darkslategray;">Phone:</label><br>
-                                <input type="text" name="phone" id="phonenum" onchange="checkPhone()" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" style="color: darkslategray;" class="">Otp:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
+
+                        <h3 class="text-center " style="color: darkslategray;">Login</h3>
+                        <div class="form-group">
+                            <label for="username" class="" style="color: darkslategray;">Email:</label><br>
+                            <input type="text" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" style="color: darkslategray;" class="">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control">
+                            <a href="/forgot-password" style="margin-left: 9.5em; color:cornflowerblue"
+                                class="mt-4">forgotten password ?</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <label for="remember-me" class="text-info"></label><br>
-                                <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit">
+                                <input type="submit" name="submit" class="btn btn-dark btn-md mx-auto" value="submit">
                             </div>
-                            <div id="register-link" class="text-right mb-3">
+                        </div>
+                        <div class="row">
+                            <div class="mb-5">
+                                <p>Login with</p>
+                                <a class="btn btn-outline-info" href="/google"><i class="fa fa-google"
+                                        aria-hidden="true"></i><span></span></a>
+                                <a class="btn btn-outline-primary" href="/linkedIn"><i class="fa fa-linkedin"
+                                        aria-hidden="true"></i> </a>
+                            </div>
+                            <div id="register-link" class="text-right  ml-auto" style="margin-top: 2em;">
                                 <a href="/signup"><span>Don't have account ? Signup.</span></a>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+
+
+                    </form>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
+</div>
+
+<script src="/scripts/scripts/jquery-2.2.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="/scripts/scripts/bootstrap.js"></script>
+
+<script>
+    $("#login-form").validate({
+        rules: {
+
+
+            password: {
+                required: true,
+
+            }
+        }
+
+
+
+    });
+</script>
