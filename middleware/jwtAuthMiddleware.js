@@ -1,13 +1,13 @@
 const objectId = require('mongodb').ObjectID
 const jwt = require('jsonwebtoken');
 const adminHelpers = require("../helpers/admin-helpers");
-
+require('dotenv').config();
 module.exports = {
 checkUser : (req, res, next) => {
     console.log(req.cookies)
     const token = req.cookies.jwt
     if (token) {
-        jwt.verify(token,'my secret', async(err, decodedToken)=>{
+        jwt.verify(token,process.env.SECRET, async(err, decodedToken)=>{
                 if(err){
                     console.log(err.message)
                     res.locals.user = null;
@@ -34,7 +34,7 @@ checkUser : (req, res, next) => {
     const token = req.cookies.jwt
     // check json web token
     if(token) {
-     jwt.verify(token,'my secret', (err, decodedToken)=>{
+     jwt.verify(token,process.env.SECRET, (err, decodedToken)=>{
          if(err) {
              console.log(err.message)
              res.redirect('/admin/login')

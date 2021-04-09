@@ -3,12 +3,13 @@ const objectId = require('mongodb').ObjectID
 const jwt = require('jsonwebtoken');
 const db = require('../config/database/connection');
 const collection = require('../config/database/collection');
+require('dotenv').config();
 
 module.exports = {
      checkUser : (req, res, next) => {
         const token = req.cookies.vendorjwt
         if (token) {
-            jwt.verify(token,'my secret', async(err, decodedToken)=>{
+            jwt.verify(token,process.env.SECRET, async(err, decodedToken)=>{
                     if(err){
                         res.locals.vendor = null;
                         res.redirect('/login')
@@ -48,7 +49,7 @@ module.exports = {
         const token = req.cookies.vendorjwt
         // check json web token
         if(token) {
-         jwt.verify(token,'my secret', (err, decodedToken)=>{
+         jwt.verify(token,process.env.SECRET, (err, decodedToken)=>{
              if(err) {
                  console.log(err.message)
                  res.redirect('/vendor/login')
