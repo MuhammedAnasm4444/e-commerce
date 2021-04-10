@@ -182,7 +182,9 @@ module.exports = {
   },
   login_get: (req, res) => {
     var message = req.flash("message");
-
+  
+      
+   
     res.render("users/login", { layout: "layoutB.hbs", message });
   },
   login_check_number: async (req, res) => {
@@ -265,11 +267,27 @@ module.exports = {
   },
   login_post: (req, res, next) => {
     console.log(req.body);
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/login",
-      failureFlash: true,
-    })(req, res, next);
+    
+    passport.authenticate("local",(err, user, info) => {
+      console.log(err,user,info)
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        req.flash("message", "Invalid username or Password" )
+      
+        return res.redirect("/login");
+      }
+      req.logIn(user, function (err) {
+        if(err){
+          console.log("error")
+
+        }
+        else {
+          res.redirect('/')
+        }
+      })
+    })(req,res,next)
   },
 
   signup_get: (req, res) => {
