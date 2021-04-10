@@ -7,16 +7,14 @@ const initializePassportGoogle = require("../config/authentication/googleAuth");
 const linkedIn = require("../config/authentication/linkedInAuth");
 const collection = require("../config/database/collection");
 const multer = require("multer");
-const accountSid = "ACc9aa38dbd1436db80c50c564caa66018";
-const authToken = "85f7c08ebe4866a0e661fe212fe50b64";
-const serviceid = "VA5ab0e4a18c0ac22488902b5184ed33f0";
+require('dotenv').config();
+const accountSid = process.env.ACCOUNT_SID ;
+const authToken = process.env.ACCOUNT_TOKEN;
+const serviceid = process.env.ACCOUNT_SERVICE_ID;
 const client = require("twilio")(accountSid, authToken);
 var sendForgotEmail = require("../config/authentication/forgotPassword");
 const paginate = require("express-paginate");
-const algoliasearch = require("algoliasearch");
 
-const APP_ID = "H7DF31E15A";
-const ADMIN_KEY = "1005343737e2cd07d416f72536bfbe77";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
